@@ -6,5 +6,6 @@ public interface HomeContract {
     }
     interface Presenter {
         void setView(HomeContract.View view);
+        void onGetLoginRequest();
     }
 }

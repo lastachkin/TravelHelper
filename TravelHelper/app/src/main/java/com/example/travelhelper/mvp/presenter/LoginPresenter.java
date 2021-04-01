@@ -33,7 +33,7 @@ public class LoginPresenter implements LoginContract.Presenter {
         if (view != null) {
             view.showInputError();
 
-            App.getInstance().getDatabase().userDao().insert(new User("8",view.getLogin(), "pass123"));
+            App.getInstance().getDatabase().userDao().insert(new User("9",view.getLogin(), "pass123"));
 
             view.startHomeActivity();
         }

@@ -13,12 +13,16 @@ public class HomePresenter implements HomeContract.Presenter {
 
     public HomePresenter(HomeContract.View view){
         this.view = view;
-        User test = App.getInstance().getDatabase().userDao().getById("8");
-        this.view.SetLogin(test.Login);
     }
 
     @Override
     public void setView(HomeContract.View view) {
         this.view = view;
+    }
+
+    @Override
+    public void onGetLoginRequest() {
+        User test = App.getInstance().getDatabase().userDao().getById("9");
+        this.view.SetLogin(test.Login);
     }
 }

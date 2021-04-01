@@ -19,6 +19,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         setContentView(R.layout.activity_home);
         username = findViewById(R.id.username);
         presenter = new HomePresenter(this);
+        presenter.onGetLoginRequest();
     }
 
     @Override
