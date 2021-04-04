@@ -1,0 +1,12 @@
+ext {
+    //Support Libraries dependencies
+    supportDependencies = [
+            appCompat        :         "androidx.appcompat:appcompat:1.2.0",
+            material         :         "com.google.android.material:material:1.3.0",
+            constraintLayout :         "androidx.constraintlayout:constraintlayout:2.0.4",
+            roomRuntime      :         "androidx.room:room-runtime:2.1.0-alpha04",
+            roomCompiler     :         "androidx.room:room-compiler:2.1.0-alpha04",
+            roomRx           :         "androidx.room:room-rxjava2:2.1.0-alpha04",
+            rxJava           :         "io.reactivex.rxjava2:rxandroid:2.0.1",
+    ]
+}
