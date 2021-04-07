@@ -41,5 +41,8 @@ dependencies {
     implementation supportDependencies.roomRuntime
     implementation supportDependencies.roomRx
     implementation supportDependencies.rxJava
+    implementation supportDependencies.design
+    implementation supportDependencies.googleMaterial
+    implementation 'org.jetbrains:annotations:15.0'
     annotationProcessor supportDependencies.roomCompiler
 }

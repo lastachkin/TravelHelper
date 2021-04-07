@@ -5,6 +5,6 @@ public interface HomeContract {
         void setLogin(String login);
     }
     interface Presenter {
-        void onGetLoginRequest();
+        void initLoginField();
     }
 }

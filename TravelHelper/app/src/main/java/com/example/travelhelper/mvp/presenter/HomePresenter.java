@@ -22,7 +22,7 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public void onGetLoginRequest() {
+    public void initLoginField() {
         App.getInstance().getDatabase().userDao().getById("1")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

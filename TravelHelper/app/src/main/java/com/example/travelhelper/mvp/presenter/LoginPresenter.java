@@ -4,9 +4,11 @@ package com.example.travelhelper.mvp.presenter;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
 import com.example.travelhelper.common.App;
 import com.example.travelhelper.mvp.contract.LoginContract;
 import com.example.travelhelper.mvp.repository.model.User;
+
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
