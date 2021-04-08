@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase;
 import com.example.travelhelper.mvp.repository.dao.UserDao;
 import com.example.travelhelper.mvp.repository.model.User;
 
-@Database(entities = {User.class}, version = 1)
+@Database(entities = {User.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
 }

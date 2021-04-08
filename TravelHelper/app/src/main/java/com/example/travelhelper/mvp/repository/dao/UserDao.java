@@ -13,7 +13,10 @@ import io.reactivex.Single;
 @Dao
 public interface UserDao {
     @Query("SELECT * FROM User WHERE Id = :id")
-    Maybe<User> getById(String id);
+    Maybe<User> getById(int id);
+
+    @Query("SELECT * FROM User WHERE Login = :login")
+    Maybe<User> getByLogin(String login);
 
     @Query("DELETE FROM User")
     void dropTable();
@@ -23,7 +26,4 @@ public interface UserDao {
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     Single<Integer> update(User user);
-
-    @Delete
-    Single<Integer> delete(User user);
 }

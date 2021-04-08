@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.travelhelper.databinding.ActivityLoginBinding;
 import com.example.travelhelper.mvp.contract.LoginContract;
@@ -22,18 +21,17 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         setContentView(binding.getRoot());
         presenter = new LoginPresenter(this);
 
-        binding.loginBtn.setOnClickListener(view -> presenter.loginButtonClicked(binding.login.getText().toString(), binding.password.getText().toString()));
+        binding.loginBtn.setOnClickListener(view -> presenter.loginButtonClicked(binding.login.getText().toString()));
         binding.registerBtn.setOnClickListener(view -> presenter.regButtonClicked());
     }
 
     @Override
-    public void showInputError() {
-        Toast.makeText(this, "Input error", Toast.LENGTH_LONG).show();
+    public void startHomePage() {
+        startActivity(new Intent(this, HomeActivity.class));
     }
 
     @Override
-    public void startHomeActivity() {
-        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-        startActivity(intent);
+    public void startRegistrationPage() {
+        startActivity(new Intent(this, RegistrationActivity.class));
     }
 }

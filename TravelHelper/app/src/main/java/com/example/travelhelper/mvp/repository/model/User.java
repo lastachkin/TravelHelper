@@ -1,14 +1,20 @@
 package com.example.travelhelper.mvp.repository.model;
 
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class User{
-    @PrimaryKey
-    @NonNull
-    public String Id;
+    @PrimaryKey(autoGenerate = true)
+    public int Id = 0;
+
+    public String Firstname;
+
+    public String Lastname;
+
+    public String Email;
+
+    public String Phone;
 
     public String Login;
 
@@ -17,8 +23,11 @@ public class User{
     public User() {
     }
 
-    public User(@NonNull String id, String login, String password) {
-        Id = id;
+    public User(String firstname, String lastname, String email, String phone, String login, String password) {
+        Firstname = firstname;
+        Lastname = lastname;
+        Email = email;
+        Phone = phone;
         Login = login;
         Password = password;
     }

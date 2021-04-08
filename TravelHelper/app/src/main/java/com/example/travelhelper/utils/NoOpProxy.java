@@ -1,4 +1,4 @@
-package com.example.travelhelper.common;
+package com.example.travelhelper.utils;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationHandler;

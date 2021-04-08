@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.travelhelper"
-        minSdkVersion 24
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -43,6 +43,8 @@ dependencies {
     implementation supportDependencies.rxJava
     implementation supportDependencies.design
     implementation supportDependencies.googleMaterial
-    implementation 'org.jetbrains:annotations:15.0'
+    implementation supportDependencies.toasty
+    implementation supportDependencies.annotations
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     annotationProcessor supportDependencies.roomCompiler
 }
