@@ -42,6 +42,6 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
 
     @Override
     public void onRegistrationFailed() {
-        Extensions.errorToast("Ошибка ввода");
+        Extensions.errorToast("Заполните все поля");
     }
 }

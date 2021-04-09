@@ -15,8 +15,8 @@ public interface UserDao {
     @Query("SELECT * FROM User WHERE Id = :id")
     Maybe<User> getById(int id);
 
-    @Query("SELECT * FROM User WHERE Login = :login")
-    Maybe<User> getByLogin(String login);
+    @Query("SELECT * FROM User WHERE Login = :login and Password = :password")
+    Single<User> getByCredentials(String login, String password);
 
     @Query("DELETE FROM User")
     void dropTable();

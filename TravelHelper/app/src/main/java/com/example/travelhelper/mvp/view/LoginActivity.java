@@ -8,6 +8,8 @@ import android.os.Bundle;
 import com.example.travelhelper.databinding.ActivityLoginBinding;
 import com.example.travelhelper.mvp.contract.LoginContract;
 import com.example.travelhelper.mvp.presenter.LoginPresenter;
+import com.example.travelhelper.mvp.repository.model.User;
+import com.example.travelhelper.utils.Extensions;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
@@ -21,17 +23,22 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         setContentView(binding.getRoot());
         presenter = new LoginPresenter(this);
 
-        binding.loginBtn.setOnClickListener(view -> presenter.loginButtonClicked(binding.login.getText().toString()));
+        binding.loginBtn.setOnClickListener(view -> presenter.loginButtonClicked(binding.login.getText().toString(), binding.password.getText().toString()));
         binding.registerBtn.setOnClickListener(view -> presenter.regButtonClicked());
     }
 
     @Override
-    public void startHomePage() {
+    public void onUserFound() {
         startActivity(new Intent(this, HomeActivity.class));
     }
 
     @Override
     public void startRegistrationPage() {
         startActivity(new Intent(this, RegistrationActivity.class));
+    }
+
+    @Override
+    public void onUserNotFound() {
+        Extensions.errorToast("Пользователь не существует");
     }
 }

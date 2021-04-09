@@ -6,7 +6,7 @@ import com.example.travelhelper.mvp.repository.model.User;
 
 public class RegistrationPresenter implements RegistrationContract.Presenter {
 
-    private RegistrationContract.View view;
+    private final RegistrationContract.View view;
 
     public RegistrationPresenter(RegistrationContract.View view){
         this.view = view;
@@ -14,7 +14,11 @@ public class RegistrationPresenter implements RegistrationContract.Presenter {
 
     @Override
     public void registrationButtonClicked(User user) {
-        Repository.insertUser(user);
-        view.onRegistrationSuccess();
+        if(user.Firstname.isEmpty() || user.Lastname.isEmpty() || user.Login.isEmpty() || user.Email.isEmpty() || user.Phone.isEmpty() || user.Password.isEmpty())
+            view.onRegistrationFailed();
+        else{
+            Repository.insertUser(user);
+            view.onRegistrationSuccess();
+        }
     }
 }
