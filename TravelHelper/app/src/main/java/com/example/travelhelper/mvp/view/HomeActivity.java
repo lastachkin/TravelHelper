@@ -1,5 +1,6 @@
 package com.example.travelhelper.mvp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -50,6 +51,10 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
                     selectedFragment = new HomeFragment();
                 else if (id == R.id.nav_favorites)
                     selectedFragment = new FavoritesFragment();
+                else if (id == R.id.nav_me)
+                    selectedFragment = new MeFragment();
+                else if (id == R.id.nav_reservations)
+                    selectedFragment = new ReservationsFragment();
                 else if (id == R.id.nav_search)
                     selectedFragment = new SearchFragment();
 
