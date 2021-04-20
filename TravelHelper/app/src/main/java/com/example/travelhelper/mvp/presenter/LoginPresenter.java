@@ -30,6 +30,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(user -> {
+                    Constants.currentUser = user;
                     view.onUserFound();
                 }, throwable -> {
                     Log.e(Constants.appLog, throwable.getMessage());

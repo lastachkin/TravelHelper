@@ -45,4 +45,8 @@ public class Repository {
     public Single<User> searchUser(String login, String password){
         return App.getInstance().getDatabase().userDao().getByCredentials(login, password);
     }
+
+    public Completable updateUser(User user){
+        return App.getInstance().getDatabase().userDao().update(user);
+    }
 }

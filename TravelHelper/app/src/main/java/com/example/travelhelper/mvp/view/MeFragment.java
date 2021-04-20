@@ -7,14 +7,76 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.travelhelper.R;
+import com.example.travelhelper.databinding.FragmentMeBinding;
+import com.example.travelhelper.mvp.contract.MeContract;
+import com.example.travelhelper.mvp.presenter.MePresenter;
+import com.example.travelhelper.utils.Extensions;
 
 import org.jetbrains.annotations.Nullable;
 
-public class MeFragment extends Fragment {
+public class MeFragment extends Fragment implements MeContract.View {
+    private MePresenter presenter;
+    private FragmentMeBinding binding;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_me, container, false);
+        binding = FragmentMeBinding.inflate(getLayoutInflater());
+        presenter = new MePresenter(this);
+        //presenter.onScreenLoaded();
+        binding.editBtn.setOnClickListener(view -> presenter.onEditButtonClicked());
+        binding.saveBtn.setOnClickListener(view -> presenter.onSaveButtonClicked(binding.password.getText().toString()));//put others fields
+        return binding.getRoot();
+    }
+
+    @Override
+    public boolean isFieldsEnabled() {
+        if(binding.password.isEnabled())
+            return true;
+        else
+            return false;
+    }
+
+    @Override
+    public void setFieldsEnabled() {
+        binding.firstName.setEnabled(true);
+        binding.lastName.setEnabled(true);
+        binding.email.setEnabled(true);
+        binding.phone.setEnabled(true);
+        binding.password.setEnabled(true);
+    }
+
+    @Override
+    public void setFieldsDisabled() {
+        binding.firstName.setEnabled(false);
+        binding.lastName.setEnabled(false);
+        binding.email.setEnabled(false);
+        binding.phone.setEnabled(false);
+        binding.password.setEnabled(false);
+    }
+
+    @Override
+    public void onUserUpdated() {
+        Extensions.successToast("Обновлено");
+    }
+
+    @Override
+    public void setFirstName(String firstName) {
+        binding.firstName.setText(firstName);
+    }
+
+    @Override
+    public void setLastName(String lastName) {
+        binding.lastName.setText(lastName);
+    }
+
+    @Override
+    public void setEmail(String email) {
+        binding.email.setText(email);
+    }
+
+    @Override
+    public void setPhone(String phone) {
+        binding.phone.setText(phone);
     }
 }
