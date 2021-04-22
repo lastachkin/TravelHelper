@@ -7,6 +7,8 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 import com.example.travelhelper.mvp.repository.model.User;
+
+import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
 
@@ -24,6 +26,6 @@ public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User...users);
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    Single<Integer> update(User user);
+    @Update
+    Completable update(User...users);
 }

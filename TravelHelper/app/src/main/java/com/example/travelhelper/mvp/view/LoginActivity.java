@@ -29,7 +29,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void onUserFound() {
-        startActivity(new Intent(this, HomeActivity.class));
+        // TODO: 4/21/2021 implement logic to define admin 
+        if(binding.login.getText().toString().equals("admin"))
+            startActivity(new Intent(this, AdminActivity.class));
+        else
+            startActivity(new Intent(this, HomeActivity.class));
     }
 
     @Override
