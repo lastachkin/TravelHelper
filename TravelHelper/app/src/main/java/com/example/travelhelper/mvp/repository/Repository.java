@@ -5,11 +5,14 @@ import android.util.Log;
 import com.example.travelhelper.App;
 import com.example.travelhelper.mvp.repository.dao.UserDao;
 import com.example.travelhelper.mvp.repository.model.User;
+import com.example.travelhelper.mvp.repository.model.Users;
+import com.example.travelhelper.mvp.repository.remote.TravelHelperApi;
 import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
 
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -19,7 +22,9 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class Repository {
-    static CompositeDisposable mDisposable = new CompositeDisposable();
+    public Observable<String> createUser(Users user){
+        return App.getInstance().getApi().createUser(user);
+    }
 
     public static void insertUser(User user){
         assert user != null;

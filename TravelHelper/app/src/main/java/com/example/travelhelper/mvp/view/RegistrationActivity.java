@@ -6,6 +6,8 @@ import com.example.travelhelper.databinding.ActivityRegistrationBinding;
 import com.example.travelhelper.mvp.contract.RegistrationContract;
 import com.example.travelhelper.mvp.presenter.RegistrationPresenter;
 import com.example.travelhelper.mvp.repository.model.User;
+import com.example.travelhelper.mvp.repository.model.Users;
+import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
 
 import android.content.Intent;
@@ -24,12 +26,13 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
         presenter = new RegistrationPresenter(this);
         binding.registerBtn.setOnClickListener(v -> {
             presenter.registrationButtonClicked(
-                    new User(binding.firstname.getText().toString(),
+                    new Users(binding.firstname.getText().toString(),
                              binding.lastname.getText().toString(),
                              binding.email.getText().toString(),
                              binding.phone.getText().toString(),
                              binding.login.getText().toString(),
-                             binding.password.getText().toString())
+                             binding.password.getText().toString(),
+                             Constants.userRole)
             );
         });
     }
@@ -42,6 +45,11 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
 
     @Override
     public void onRegistrationFailed() {
+        Extensions.errorToast("Ошибка");
+    }
+
+    @Override
+    public void onEmptyFields() {
         Extensions.errorToast("Заполните все поля");
     }
 }
