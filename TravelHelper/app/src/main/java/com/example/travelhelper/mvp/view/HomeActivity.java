@@ -16,8 +16,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity implements HomeContract.View {
 
-    private HomePresenter presenter;
-    private ActivityHomeBinding binding;
+    HomePresenter presenter;
+    ActivityHomeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,7 +10,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.disposables.CompositeDisposable;
 
-
 public class LoginPresenter implements LoginContract.Presenter {
 
     private final LoginContract.View view;

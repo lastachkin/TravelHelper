@@ -13,7 +13,6 @@ import io.reactivex.observers.DisposableMaybeObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class HomePresenter implements HomeContract.Presenter {
-
     @Nullable
     private HomeContract.View view;
 
