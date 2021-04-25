@@ -1,50 +1,16 @@
 package com.example.travelhelper.mvp.repository;
 
-import android.util.Log;
-
 import com.example.travelhelper.App;
-import com.example.travelhelper.mvp.repository.dao.UserDao;
 import com.example.travelhelper.mvp.repository.model.User;
 import com.example.travelhelper.mvp.repository.model.Users;
-import com.example.travelhelper.mvp.repository.remote.TravelHelperApi;
-import com.example.travelhelper.utils.Constants;
-import com.example.travelhelper.utils.Extensions;
 
 import io.reactivex.Completable;
-import io.reactivex.CompletableObserver;
 import io.reactivex.Observable;
 import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableMaybeObserver;
-import io.reactivex.observers.DisposableSingleObserver;
-import io.reactivex.schedulers.Schedulers;
 
 public class Repository {
     public Observable<String> createUser(Users user){
         return App.getInstance().getApi().createUser(user);
-    }
-
-    public static void insertUser(User user){
-        assert user != null;
-        Completable.fromAction(() -> {
-            App.getInstance().getDatabase().userDao().insert(user);
-        }).observeOn(AndroidSchedulers.mainThread())
-          .subscribeOn(Schedulers.io()).subscribe(new CompletableObserver() {
-             @Override
-             public void onSubscribe(Disposable d) {
-             }
-
-             @Override
-             public void onComplete() {
-             }
-
-             @Override
-             public void onError(Throwable e) {
-                    Log.e("LOG", e.getMessage());
-             }
-        });
     }
 
     public Single<User> searchUser(String login, String password){

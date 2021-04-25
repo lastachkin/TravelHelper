@@ -15,6 +15,9 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegistrationPresenter implements RegistrationContract.Presenter {
 
@@ -29,7 +32,7 @@ public class RegistrationPresenter implements RegistrationContract.Presenter {
     }
 
     @Override
-    public void registrationButtonClicked(Users user) {
+    public void onRegistrationButtonClicked(Users user) {
         assert view != null;
         if(user.Firstname.isEmpty() || user.Lastname.isEmpty() || user.Login.isEmpty() || user.Email.isEmpty() || user.Phone.isEmpty() || user.Password.isEmpty())
             view.onEmptyFields();
@@ -44,7 +47,6 @@ public class RegistrationPresenter implements RegistrationContract.Presenter {
                         view.onRegistrationFailed();
                         Log.e(Constants.appLog, throwable.getMessage());
                     }));
-            //Repository.insertUser(user);
         }
     }
 }

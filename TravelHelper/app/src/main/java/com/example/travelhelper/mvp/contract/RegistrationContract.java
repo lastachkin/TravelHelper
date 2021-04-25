@@ -11,6 +11,6 @@ public interface RegistrationContract {
     }
 
     interface Presenter {
-        void registrationButtonClicked(Users user);
+        void onRegistrationButtonClicked(Users user);
     }
 }
