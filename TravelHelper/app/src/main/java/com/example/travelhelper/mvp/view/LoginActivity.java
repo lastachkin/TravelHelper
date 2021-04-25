@@ -23,8 +23,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         setContentView(binding.getRoot());
         presenter = new LoginPresenter(this);
 
-        binding.loginBtn.setOnClickListener(view -> presenter.loginButtonClicked(binding.login.getText().toString(), binding.password.getText().toString()));
-        binding.registerBtn.setOnClickListener(view -> presenter.regButtonClicked());
+        binding.loginBtn.setOnClickListener(view -> presenter.onLoginButtonClicked(binding.login.getText().toString(), binding.password.getText().toString()));
+        binding.registerBtn.setOnClickListener(view -> startActivity(new Intent(this, RegistrationActivity.class)));
     }
 
     @Override
@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void startRegistrationPage() {
-        startActivity(new Intent(this, RegistrationActivity.class));
+    public void onUserIncorrectPass() {
+        Extensions.errorToast("Неверный пароль");
     }
 
     @Override

@@ -25,7 +25,7 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
         setContentView(binding.getRoot());
         presenter = new RegistrationPresenter(this);
         binding.registerBtn.setOnClickListener(v -> {
-            presenter.registrationButtonClicked(
+            presenter.onRegistrationButtonClicked(
                     new Users(binding.firstname.getText().toString(),
                              binding.lastname.getText().toString(),
                              binding.email.getText().toString(),
