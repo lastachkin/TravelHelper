@@ -2,7 +2,6 @@ package com.example.travelhelper.mvp.presenter;
 
 import android.util.Log;
 
-import com.example.travelhelper.App;
 import com.example.travelhelper.mvp.contract.LoginContract;
 import com.example.travelhelper.mvp.repository.Repository;
 import com.example.travelhelper.utils.Constants;
@@ -10,9 +9,6 @@ import com.example.travelhelper.utils.Constants;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LoginPresenter implements LoginContract.Presenter {
 

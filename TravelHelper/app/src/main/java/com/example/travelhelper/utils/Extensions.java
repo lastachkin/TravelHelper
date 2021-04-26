@@ -8,14 +8,14 @@ import es.dmoral.toasty.Toasty;
 
 public class Extensions {
     public static void successToast(String msg) {
-        Toasty.success(App.appContext, msg, Toast.LENGTH_SHORT).show();
+        Toasty.success(App.getInstance().getAppContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     public static void errorToast(String msg) {
-        Toasty.error(App.appContext, msg, Toast.LENGTH_SHORT).show();
+        Toasty.error(App.getInstance().getAppContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     public static void warningToast(String msg) {
-        Toasty.warning(App.appContext, msg, Toast.LENGTH_SHORT).show();
+        Toasty.warning(App.getInstance().getAppContext(), msg, Toast.LENGTH_SHORT).show();
     }
 }

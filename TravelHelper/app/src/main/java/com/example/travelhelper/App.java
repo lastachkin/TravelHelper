@@ -10,10 +10,10 @@ import com.example.travelhelper.mvp.repository.remote.RetrofitClient;
 import com.example.travelhelper.mvp.repository.remote.TravelHelperApi;
 
 public class App extends Application {
-    public static App instance;
-    public static Context appContext;
-    private AppDatabase database;
-    private TravelHelperApi api;
+    static App instance;
+    Context appContext;
+    AppDatabase database;
+    TravelHelperApi api;
 
     @Override
     public void onCreate() {
@@ -34,5 +34,9 @@ public class App extends Application {
 
     public TravelHelperApi getApi(){
         return api;
+    }
+
+    public Context getAppContext(){
+        return appContext;
     }
 }
