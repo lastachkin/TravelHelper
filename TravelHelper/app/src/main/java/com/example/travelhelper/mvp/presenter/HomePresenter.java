@@ -6,7 +6,7 @@ import com.example.travelhelper.mvp.contract.HomeContract;
 
 public class HomePresenter implements HomeContract.Presenter {
     @Nullable
-    private HomeContract.View view;
+    private final HomeContract.View view;
 
     public HomePresenter(HomeContract.View view){
         this.view = view;

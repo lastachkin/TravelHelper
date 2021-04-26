@@ -5,6 +5,5 @@ public interface AdminContract {
         void onImageClicked();
     }
     interface Presenter {
-
     }
 }

@@ -1,5 +1,6 @@
 package com.example.travelhelper.mvp.repository.remote;
 
+import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.repository.model.Users;
 
 import io.reactivex.Observable;
@@ -17,4 +18,6 @@ public interface TravelHelperApi {
 
     @POST("api/user")
     Observable<String> createUser(@Body Users user);
+    @POST("api/hotel")
+    Observable<String> createHotel(@Body Hotels hotel);
 }

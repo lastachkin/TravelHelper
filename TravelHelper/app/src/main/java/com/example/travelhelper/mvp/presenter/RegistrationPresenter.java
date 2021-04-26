@@ -33,10 +33,12 @@ public class RegistrationPresenter implements RegistrationContract.Presenter {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(s -> {
-                        view.onRegistrationSuccess();
                         Log.i(Constants.appLog, s);
+                        if(s.contains("User already exists"))
+                            view.onRegistrationFailed();
+                        else
+                            view.onRegistrationSuccess();
                     }, throwable -> {
-                        view.onRegistrationFailed();
                         Log.e(Constants.appLog, throwable.getMessage());
                     }));
         }

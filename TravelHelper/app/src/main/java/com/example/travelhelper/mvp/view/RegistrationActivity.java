@@ -44,7 +44,7 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
 
     @Override
     public void onRegistrationFailed() {
-        Extensions.errorToast("Ошибка");
+        Extensions.errorToast("Пользователь уже существует");
     }
 
     @Override

@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.example.travelhelper.R;
 import com.example.travelhelper.databinding.ActivityAdminBinding;
 import com.example.travelhelper.mvp.contract.AdminContract;
 import com.example.travelhelper.utils.Extensions;
@@ -34,7 +33,9 @@ public class AdminActivity extends AppCompatActivity implements AdminContract.Vi
         binding.hotelPic.setOnClickListener(view -> onImageClicked());
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
-        downloadPic();
+
+        binding.createHotelBtn.setOnClickListener(view -> startActivity(new Intent(this, CreateHotelActivity.class)));
+        //downloadPic();
     }
 
     @Override
