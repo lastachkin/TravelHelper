@@ -8,7 +8,6 @@ import android.os.Bundle;
 import com.example.travelhelper.databinding.ActivityLoginBinding;
 import com.example.travelhelper.mvp.contract.LoginContract;
 import com.example.travelhelper.mvp.presenter.LoginPresenter;
-import com.example.travelhelper.mvp.repository.model.User;
 import com.example.travelhelper.utils.Extensions;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {

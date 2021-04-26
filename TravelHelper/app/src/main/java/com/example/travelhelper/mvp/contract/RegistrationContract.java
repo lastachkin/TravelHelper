@@ -1,6 +1,5 @@
 package com.example.travelhelper.mvp.contract;
 
-import com.example.travelhelper.mvp.repository.model.User;
 import com.example.travelhelper.mvp.repository.model.Users;
 
 public interface RegistrationContract {

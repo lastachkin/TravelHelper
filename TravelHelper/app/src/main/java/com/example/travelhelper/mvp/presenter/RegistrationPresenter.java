@@ -2,22 +2,14 @@ package com.example.travelhelper.mvp.presenter;
 
 import android.util.Log;
 
-import com.example.travelhelper.App;
 import com.example.travelhelper.mvp.contract.RegistrationContract;
 import com.example.travelhelper.mvp.repository.Repository;
-import com.example.travelhelper.mvp.repository.model.User;
 import com.example.travelhelper.mvp.repository.model.Users;
 import com.example.travelhelper.utils.Constants;
-import com.example.travelhelper.utils.Extensions;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class RegistrationPresenter implements RegistrationContract.Presenter {
 

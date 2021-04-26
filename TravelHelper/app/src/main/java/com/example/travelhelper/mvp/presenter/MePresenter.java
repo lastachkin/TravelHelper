@@ -1,18 +1,11 @@
 package com.example.travelhelper.mvp.presenter;
 
-import android.util.Log;
-import android.widget.Button;
-
 import androidx.annotation.Nullable;
 
 import com.example.travelhelper.mvp.contract.MeContract;
 import com.example.travelhelper.mvp.repository.Repository;
-import com.example.travelhelper.mvp.repository.model.User;
-import com.example.travelhelper.utils.Constants;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
 
 
 public class MePresenter implements MeContract.Presenter {

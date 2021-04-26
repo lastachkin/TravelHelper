@@ -1,16 +1,8 @@
 package com.example.travelhelper.mvp.presenter;
 
-import android.util.Log;
-
 import androidx.annotation.Nullable;
 
-import com.example.travelhelper.App;
 import com.example.travelhelper.mvp.contract.HomeContract;
-import com.example.travelhelper.mvp.repository.model.User;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableMaybeObserver;
-import io.reactivex.schedulers.Schedulers;
 
 public class HomePresenter implements HomeContract.Presenter {
     @Nullable

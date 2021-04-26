@@ -1,9 +1,9 @@
 package com.example.travelhelper.utils;
 
-import com.example.travelhelper.mvp.repository.model.User;
+import com.example.travelhelper.mvp.repository.model.Users;
 
 public class Constants {
-    public static User currentUser;
+    public static Users currentUser;
     public static final String appLog = "LOG";
     public static final String userRole = "U";
     public static final String hotelAdminRole = "A";

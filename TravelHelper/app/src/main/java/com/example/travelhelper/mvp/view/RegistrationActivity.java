@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.travelhelper.databinding.ActivityRegistrationBinding;
 import com.example.travelhelper.mvp.contract.RegistrationContract;
 import com.example.travelhelper.mvp.presenter.RegistrationPresenter;
-import com.example.travelhelper.mvp.repository.model.User;
 import com.example.travelhelper.mvp.repository.model.Users;
 import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
