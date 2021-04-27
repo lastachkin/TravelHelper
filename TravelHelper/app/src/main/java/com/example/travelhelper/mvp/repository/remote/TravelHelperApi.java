@@ -15,6 +15,8 @@ import retrofit2.http.Query;
 public interface TravelHelperApi {
     @GET("api/user")
     Observable<String> searchUser(@Query("login") String login, @Query("password") String password);
+    @GET("api/hotel/")
+    Observable<String> searchHotel(@Query("title") String title, @Query("city") String city);
 
     @POST("api/user")
     Observable<String> createUser(@Body Users user);

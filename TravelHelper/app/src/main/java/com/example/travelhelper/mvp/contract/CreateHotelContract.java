@@ -10,7 +10,6 @@ public interface CreateHotelContract {
         void onCreationFailed();
     }
     interface Presenter {
-        //void onUploadPicture(Uri uri, String title);
         void onCreateHotelButtonClicked(Uri uri, String title, Hotels hotel);
     }
 }

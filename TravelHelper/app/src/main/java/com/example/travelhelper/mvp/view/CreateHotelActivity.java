@@ -50,7 +50,6 @@ public class CreateHotelActivity extends AppCompatActivity implements CreateHote
         if(requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null){
             imageUri = data.getData();
             binding.hotelPic.setImageURI(imageUri);
-            //presenter.onUploadPicture(imageUri, binding.title.getText().toString() + "_" + binding.city.getText().toString());
         }
     }
 

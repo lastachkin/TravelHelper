@@ -33,6 +33,10 @@ public class Repository {
         return App.getInstance().getApi().createHotel(hotel);
     }
 
+    public Observable<String> searchHotel(String title, String city){
+        return App.getInstance().getApi().searchHotel(title, city);
+    }
+
     public UploadTask uploadHotelPicture(Uri uri, String title){
         StorageReference imageRef = firebaseStorageRef.child("hotels/" + title);
         return imageRef.putFile(uri);
