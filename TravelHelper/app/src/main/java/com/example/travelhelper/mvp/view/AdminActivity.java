@@ -30,6 +30,7 @@ public class AdminActivity extends AppCompatActivity implements AdminContract.Vi
         super.onCreate(savedInstanceState);
         binding = ActivityAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         binding.hotelPic.setOnClickListener(view -> onImageClicked());
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();

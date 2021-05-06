@@ -10,4 +10,16 @@ public class Hotels {
         City = city;
         Address = address;
     }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
 }

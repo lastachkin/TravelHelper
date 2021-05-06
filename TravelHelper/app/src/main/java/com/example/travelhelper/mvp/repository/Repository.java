@@ -40,7 +40,5 @@ public class Repository {
     public UploadTask uploadHotelPicture(Uri uri, String title){
         StorageReference imageRef = firebaseStorageRef.child("hotels/" + title);
         return imageRef.putFile(uri);
-                //.addOnSuccessListener(taskSnapshot -> Extensions.successToast("Загружено"))
-                //.addOnFailureListener(e -> Extensions.errorToast("Ошибка загрузки"));
     }
 }

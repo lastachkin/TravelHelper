@@ -1,10 +1,7 @@
 package com.example.travelhelper.mvp.view;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -33,7 +30,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         //I added this if statement to keep the selected fragment when rotating the device
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomeFragment()).commit();
+                    new HotelsFragment()).commit();
         }
     }
 
@@ -48,7 +45,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
                 int id = item.getItemId();
 
                 if(id == R.id.nav_home)
-                    selectedFragment = new HomeFragment();
+                    selectedFragment = new HotelsFragment();
                 else if (id == R.id.nav_favorites)
                     selectedFragment = new FavoritesFragment();
                 else if (id == R.id.nav_me)
