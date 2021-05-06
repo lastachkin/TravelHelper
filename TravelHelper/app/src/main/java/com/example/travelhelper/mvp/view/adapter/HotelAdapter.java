@@ -1,5 +1,6 @@
 package com.example.travelhelper.mvp.view.adapter;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelhelper.R;
 import com.example.travelhelper.mvp.repository.model.Hotels;
+import com.example.travelhelper.mvp.view.HotelDetailsActivity;
 import com.example.travelhelper.utils.Extensions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -22,10 +24,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
-    private final List<Hotels> hotels;
+    private static List<Hotels> hotels;
 
     public HotelAdapter(List<Hotels> hotels) {
-        this.hotels = hotels;
+        HotelAdapter.hotels = hotels;
     }
 
     @NonNull
@@ -40,10 +42,10 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
     public void onBindViewHolder(HotelAdapter.ViewHolder holder, int position) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        // TODO: 06.05.2021 Move logic to presenter 
+        // TODO: 06.05.2021 Move logic to repo
         Hotels hotel = hotels.get(position);
         try{
-            final File localFile = File.createTempFile("minsk13", "jpg");
+            final File localFile = File.createTempFile("tmp", "jpg");
             storageRef.child("hotels/"+ hotel.getTitle() + "_" + hotel.getCity()).getFile(localFile)
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
@@ -63,15 +65,24 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
         return hotels.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final AppCompatImageView hotelImageView;
         final AppCompatTextView nameView, addressView;
         ViewHolder(View view){
             super(view);
-
+            view.setOnClickListener(this);
             hotelImageView = view.findViewById(R.id.hotelImage);
             nameView = view.findViewById(R.id.title);
             addressView = view.findViewById(R.id.address);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(v.getContext(), HotelDetailsActivity.class);
+            intent.putExtra("Title", hotels.get(getLayoutPosition()).getTitle());
+            intent.putExtra("City", hotels.get(getLayoutPosition()).getCity());
+            intent.putExtra("Address", hotels.get(getLayoutPosition()).getAddress());
+            v.getContext().startActivity(intent);
         }
     }
 }
