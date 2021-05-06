@@ -5,6 +5,6 @@ public interface HotelsContract {
 
     }
     interface Presenter {
-
+        void onScreenLoaded();
     }
 }

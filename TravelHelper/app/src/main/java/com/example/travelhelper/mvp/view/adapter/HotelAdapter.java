@@ -1,5 +1,7 @@
 package com.example.travelhelper.mvp.view.adapter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelhelper.R;
 import com.example.travelhelper.mvp.repository.model.Hotels;
+import com.example.travelhelper.utils.Extensions;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
@@ -30,8 +37,22 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(HotelAdapter.ViewHolder holder, int position) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        // TODO: 06.05.2021 Move logic to presenter 
         Hotels hotel = hotels.get(position);
-        holder.hotelImageView.setImageResource(R.drawable.camera_lens);//set image from firebase
+        try{
+            final File localFile = File.createTempFile("minsk13", "jpg");
+            storageRef.child("hotels/"+ hotel.getTitle() + "_" + hotel.getCity()).getFile(localFile)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                        holder.hotelImageView.setImageBitmap(bitmap);
+                    })
+                    .addOnFailureListener(e -> Extensions.errorToast("Ошибка загрузки"));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
         holder.nameView.setText(hotel.getTitle());
         holder.addressView.setText(hotel.getCity());
     }
