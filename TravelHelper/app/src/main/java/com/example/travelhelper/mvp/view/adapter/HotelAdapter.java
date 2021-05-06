@@ -32,6 +32,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
     @Override
     public HotelAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_hotel_item,parent,false);
+        view.findViewById(R.id.hotelImage).setClipToOutline(true);
         return new ViewHolder(view);
     }
 
@@ -68,9 +69,9 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
         ViewHolder(View view){
             super(view);
 
-            hotelImageView = (AppCompatImageView) view.findViewById(R.id.hotelImage);
-            nameView = (AppCompatTextView) view.findViewById(R.id.title);
-            addressView = (AppCompatTextView) view.findViewById(R.id.address);
+            hotelImageView = view.findViewById(R.id.hotelImage);
+            nameView = view.findViewById(R.id.title);
+            addressView = view.findViewById(R.id.address);
         }
     }
 }
