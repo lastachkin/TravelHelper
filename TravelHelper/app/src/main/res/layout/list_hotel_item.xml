@@ -25,10 +25,11 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
             android:layout_width="230dp"
-            android:layout_height="35dp"
-            android:layout_margin="20dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
             android:fontFamily="sans-serif-smallcaps"
             android:padding="5dp"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@android:color/black"
             android:textStyle="bold"
@@ -37,28 +38,23 @@
             cardView:layout_constraintLeft_toRightOf="@id/hotelImage"
             cardView:layout_constraintRight_toRightOf="parent"
             cardView:layout_constraintTop_toTopOf="parent"
-            cardView:layout_constraintVertical_bias="0.168"
+            cardView:layout_constraintVertical_bias="0.3"
             tools:text="@tools:sample/first_names" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/address"
             android:layout_width="230dp"
             android:layout_height="35dp"
-
-
-            android:layout_marginStart="57dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="65dp"
             android:fontFamily="sans-serif-smallcaps"
             android:padding="5dp"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@android:color/black"
             android:textStyle="bold"
-            cardView:layout_constraintEnd_toEndOf="parent"
             cardView:layout_constraintStart_toEndOf="@+id/hotelImage"
-            cardView:layout_constraintTop_toTopOf="@+id/title"
+            cardView:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
             tools:text="@tools:sample/cities" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
