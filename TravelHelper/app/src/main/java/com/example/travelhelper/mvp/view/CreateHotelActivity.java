@@ -8,10 +8,13 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.example.travelhelper.databinding.ActivityCreateHotelBinding;
+import com.example.travelhelper.mvp.contract.AdminContract;
 import com.example.travelhelper.mvp.contract.CreateHotelContract;
 import com.example.travelhelper.mvp.presenter.CreateHotelPresenter;
 import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.utils.Extensions;
+
+import java.util.UUID;
 
 public class CreateHotelActivity extends AppCompatActivity implements CreateHotelContract.View {
     ActivityCreateHotelBinding binding;
@@ -25,12 +28,12 @@ public class CreateHotelActivity extends AppCompatActivity implements CreateHote
         binding =  ActivityCreateHotelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.createHotelBtn.setOnClickListener(view ->
-                presenter.onCreateHotelButtonClicked(
-                        imageUri,
-                        binding.title.getText().toString() + "_" + binding.city.getText().toString(),
-                        new Hotels(binding.title.getText().toString(), binding.city.getText().toString(), binding.address.getText().toString())
-                ));
+        binding.createHotelBtn.setOnClickListener(view -> {
+            presenter.onCreateHotelButtonClicked(
+                    imageUri,
+                    binding.title.getText().toString() + "_" + binding.city.getText().toString(),
+                    new Hotels(UUID.randomUUID().toString(), binding.title.getText().toString(), binding.city.getText().toString(), binding.address.getText().toString()));
+        });
 
         binding.hotelPic.setOnClickListener(view -> {
             if(binding.title.getText().toString().isEmpty() || binding.city.getText().toString().isEmpty())
@@ -56,6 +59,7 @@ public class CreateHotelActivity extends AppCompatActivity implements CreateHote
     @Override
     public void onCreationSuccess() {
         Extensions.successToast("Отель добавлен");
+        startActivity(new Intent(this, AdminActivity.class));
     }
 
     @Override

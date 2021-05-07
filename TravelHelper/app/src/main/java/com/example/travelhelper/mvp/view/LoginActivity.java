@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.example.travelhelper.databinding.ActivityLoginBinding;
 import com.example.travelhelper.mvp.contract.LoginContract;
 import com.example.travelhelper.mvp.presenter.LoginPresenter;
+import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
@@ -29,10 +30,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void onUserFound() {
         // TODO: 4/21/2021 implement logic to define admin 
-        if(binding.login.getText().toString().equals("admin"))
+        if(binding.login.getText().toString().equals("admin")){
+            Constants.isAdmin = true;
             startActivity(new Intent(this, AdminActivity.class));
-        else
+        }
+        else{
+            Constants.isAdmin = false;
             startActivity(new Intent(this, HomeActivity.class));
+        }
     }
 
     @Override

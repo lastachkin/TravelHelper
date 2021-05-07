@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.travelhelper.R;
 import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.view.HotelDetailsActivity;
+import com.example.travelhelper.mvp.view.HotelEditActivity;
 import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
 import com.google.firebase.storage.FirebaseStorage;
@@ -83,7 +84,13 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(v.getContext(), HotelDetailsActivity.class);
+            Intent intent;
+            if(!Constants.isAdmin) {
+                intent = new Intent(v.getContext(), HotelDetailsActivity.class);
+            } else
+                intent = new Intent(v.getContext(), HotelEditActivity.class);
+
+            intent.putExtra("Id", hotels.get(getLayoutPosition()).getId());
             intent.putExtra("Title", hotels.get(getLayoutPosition()).getTitle());
             intent.putExtra("City", hotels.get(getLayoutPosition()).getCity());
             intent.putExtra("Address", hotels.get(getLayoutPosition()).getAddress());

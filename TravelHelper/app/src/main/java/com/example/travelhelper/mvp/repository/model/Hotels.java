@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import com.google.gson.annotations.SerializedName;
 
 public class Hotels {
+    @SerializedName("id")
+    public String Id;
     @SerializedName("title")
     public String Title;
     @SerializedName("city")
@@ -12,10 +14,15 @@ public class Hotels {
     @SerializedName("address")
     public String Address;
 
-    public Hotels(String title, String city, String address) {
+    public Hotels(String id, String title, String city, String address) {
+        Id = id;
         Title = title;
         City = city;
         Address = address;
+    }
+
+    public String getId() {
+        return Id;
     }
 
     public String getTitle() {
@@ -33,6 +40,6 @@ public class Hotels {
     @NonNull
     @Override
     public String toString() {
-        return "Title: " + getTitle() + " City: " + getCity() + " Address: " + getAddress();
+        return "Id: " + getId() + " Title: " + getTitle() + " City: " + getCity() + " Address: " + getAddress();
     }
 }

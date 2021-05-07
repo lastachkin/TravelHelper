@@ -11,9 +11,7 @@
         android:id="@+id/main_txt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="115dp"
+        android:layout_marginTop="20dp"
         android:text="Администратор"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -28,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="70dp"
         android:background="@drawable/btn_bg"
         android:text="Добавить отель"
@@ -37,31 +35,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_txt" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/createHotelAdmin_btn"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="70dp"
-        android:background="@drawable/btn_bg"
-        android:text="Добавить управляющего"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createHotel_btn" />
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/createHotelAdmin_btn"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="70dp"-->
+<!--        android:background="@drawable/btn_bg"-->
+<!--        android:text="Добавить управляющего"-->
+<!--        android:textColor="@color/black"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/createHotel_btn" />-->
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/hotelPic"
-        android:layout_width="108dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="150dp"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hotelList"
+        android:layout_width="0dp"
+        android:layout_height="580dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createHotelAdmin_btn"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/createHotel_btn"
+        tools:listitem="@layout/list_hotel_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

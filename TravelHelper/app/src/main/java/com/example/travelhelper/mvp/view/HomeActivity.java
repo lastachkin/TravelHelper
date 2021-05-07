@@ -25,9 +25,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         presenter = new HomePresenter(this);
         presenter.initLoginField();
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         binding.bottomNavigation.setOnNavigationItemSelectedListener(navListener);
-        //I added this if statement to keep the selected fragment when rotating the device
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new HotelsFragment()).commit();

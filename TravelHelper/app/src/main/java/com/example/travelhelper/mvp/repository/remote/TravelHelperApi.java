@@ -10,6 +10,8 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface TravelHelperApi {
@@ -24,4 +26,7 @@ public interface TravelHelperApi {
     Observable<String> createUser(@Body Users user);
     @POST("api/hotel")
     Observable<String> createHotel(@Body Hotels hotel);
+
+    @PUT("api/hotel/{id}")
+    Call<String> updateHotel(@Path("id") String id, @Body Hotels hotel);
 }

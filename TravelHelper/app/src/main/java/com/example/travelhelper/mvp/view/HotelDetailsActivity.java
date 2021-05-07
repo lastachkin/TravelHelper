@@ -1,10 +1,13 @@
 package com.example.travelhelper.mvp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import com.example.travelhelper.R;
 import com.example.travelhelper.databinding.ActivityHotelDetailsBinding;
 import com.example.travelhelper.mvp.contract.HotelDetailsContract;
 import com.example.travelhelper.mvp.presenter.HotelDetailsPresenter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -37,8 +40,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements HotelDeta
             binding.description.setText(description);
             binding.description.setMovementMethod(new ScrollingMovementMethod());
         }
-
-        binding.reservBtn.setOnClickListener(view -> startActivity(new Intent(this, RegistrationActivity.class)));
+        binding.reservBtn.setOnClickListener(v -> startActivity(new Intent(this, RegistrationActivity.class)));
     }
 
     @Override
