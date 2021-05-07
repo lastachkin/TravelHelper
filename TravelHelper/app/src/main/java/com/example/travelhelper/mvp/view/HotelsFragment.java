@@ -48,7 +48,7 @@ public class HotelsFragment extends Fragment implements HotelsContract.View {
             public void onResponse(Call<List<Hotels>> call, Response<List<Hotels>> response) {
                 hotels.clear();
 
-                List<Hotels> hotelsResponse = (List<Hotels>) response.body();
+                List<Hotels> hotelsResponse = response.body();
                 hotels.addAll(hotelsResponse);
 
                 adapter.notifyDataSetChanged();

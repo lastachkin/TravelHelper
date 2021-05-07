@@ -3,6 +3,7 @@ package com.example.travelhelper.mvp.view.adapter;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.travelhelper.R;
 import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.view.HotelDetailsActivity;
+import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -51,7 +53,10 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
                         Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         holder.hotelImageView.setImageBitmap(bitmap);
                     })
-                    .addOnFailureListener(e -> Extensions.errorToast("Ошибка загрузки"));
+                    .addOnFailureListener(e -> {
+                        Log.e(Constants.appLog, e.getMessage());
+                        holder.hotelImageView.setImageResource(R.drawable.camera_lens);
+                    });
         }
         catch (IOException e){
             e.printStackTrace();

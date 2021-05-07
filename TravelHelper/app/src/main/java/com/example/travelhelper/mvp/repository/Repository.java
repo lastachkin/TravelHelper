@@ -52,19 +52,4 @@ public class Repository {
         StorageReference imageRef = firebaseStorageRef.child("hotels/" + title);
         return imageRef.putFile(uri);
     }
-
-//    public void downloadImageByName(String name){
-//        try{
-//            final File localFile = File.createTempFile("minsk", "jpg");
-//            storageRef.child("hotels/minsk.jpg").getFile(localFile)
-//                    .addOnSuccessListener(taskSnapshot -> {
-//                        Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-//                        //binding.hotelPic.setImageBitmap(bitmap);
-//                    })
-//                    .addOnFailureListener(e -> Extensions.errorToast("Ошибка загрузки"));
-//            }
-//        catch (IOException e){
-//            e.printStackTrace();
-//        }
-//    }
 }

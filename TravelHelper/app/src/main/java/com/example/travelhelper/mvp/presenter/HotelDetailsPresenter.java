@@ -1,7 +1,18 @@
 package com.example.travelhelper.mvp.presenter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+
+import com.example.travelhelper.R;
 import com.example.travelhelper.mvp.contract.HotelDetailsContract;
 import com.example.travelhelper.mvp.repository.Repository;
+import com.example.travelhelper.utils.Constants;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -16,4 +27,22 @@ public class HotelDetailsPresenter implements HotelDetailsContract.Presenter {
         mDisposable = new CompositeDisposable();
     }
 
+    @Override
+    public void onScreenLoaded(String title, String city, String address) {
+        //Set image
+        try{
+            final File localFile = File.createTempFile("tmp", "jpg");
+            FirebaseStorage.getInstance().getReference().child("hotels/"+ title + "_" + city).getFile(localFile)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                        view.setHotelImageBitmap(bitmap);
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e(Constants.appLog, e.getMessage());
+                        view.setHotelImageId(R.drawable.camera_lens);
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
