@@ -42,7 +42,7 @@ public class HotelEditActivity extends AppCompatActivity implements HotelEditCon
         binding.description.setMovementMethod(new ScrollingMovementMethod());
 
         binding.saveBtn.setOnClickListener(v -> presenter.onSaveButtonClicked(imageUri, new Hotels(id, binding.title.getText().toString(), binding.city.getText().toString(), binding.address.getText().toString())));
-        binding.deleteBtn.setOnClickListener(v -> presenter.onDeleteButtonClicked());
+        binding.deleteBtn.setOnClickListener(v -> presenter.onDeleteButtonClicked(new Hotels(id, title, city, address)));
         binding.addRoomBtn.setOnClickListener(v -> {
             //putextra hotel info
             //start activity for room types editing
@@ -83,6 +83,7 @@ public class HotelEditActivity extends AppCompatActivity implements HotelEditCon
     @Override
     public void onDeleteSuccess() {
         Extensions.successToast("Отель удален");
+        startActivity(new Intent(this, AdminActivity.class));
     }
 
     @Override

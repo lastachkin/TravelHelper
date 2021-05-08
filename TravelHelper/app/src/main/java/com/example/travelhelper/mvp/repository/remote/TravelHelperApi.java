@@ -8,6 +8,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -29,4 +30,7 @@ public interface TravelHelperApi {
 
     @PUT("api/hotel/{id}")
     Call<String> updateHotel(@Path("id") String id, @Body Hotels hotel);
+
+    @DELETE("api/hotel/{id}")
+    Call<String> deleteHotel(@Path("id") String id);
 }

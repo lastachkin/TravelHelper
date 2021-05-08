@@ -1,19 +1,14 @@
 package com.example.travelhelper.mvp.repository;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 
 import com.example.travelhelper.App;
 import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.repository.model.Users;
-import com.example.travelhelper.utils.Extensions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -46,6 +41,10 @@ public class Repository {
 
     public Call<List<Hotels>> getHotelList(){
         return App.getInstance().getApi().getHotelList();
+    }
+
+    public Call<String> deleteHotel(String id){
+        return App.getInstance().getApi().deleteHotel(id);
     }
 
     public UploadTask uploadHotelPicture(Uri uri, String title){

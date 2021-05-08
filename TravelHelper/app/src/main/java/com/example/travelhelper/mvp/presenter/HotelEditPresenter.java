@@ -53,9 +53,11 @@ public class HotelEditPresenter implements HotelEditContract.Presenter {
 
     @Override
     public void onSaveButtonClicked(Uri uri, Hotels hotel) {
-        repository.uploadHotelPicture(uri, hotel.getTitle() + "_" + hotel.getCity())
-                .addOnSuccessListener(taskSnapshot -> Log.i(Constants.appLog, "Hotel image uploaded"))
-                .addOnFailureListener(e -> Log.e(Constants.appLog, e.getMessage()));
+        if(uri != null){
+            repository.uploadHotelPicture(uri, hotel.getTitle() + "_" + hotel.getCity())
+                    .addOnSuccessListener(taskSnapshot -> Log.i(Constants.appLog, "Hotel image uploaded"))
+                    .addOnFailureListener(e -> Log.e(Constants.appLog, e.getMessage()));
+        }
 
         Call<String> call = App.getInstance().getApi().updateHotel(hotel.getId(), hotel);
         call.enqueue(new Callback<String>() {
@@ -72,7 +74,24 @@ public class HotelEditPresenter implements HotelEditContract.Presenter {
     }
 
     @Override
-    public void onDeleteButtonClicked() {
+    public void onDeleteButtonClicked(Hotels hotel) {
+        //Delete image from Firebase
+        FirebaseStorage.getInstance().getReference().child("hotels/"+ hotel.getTitle() + "_" + hotel.getCity()).delete()
+                .addOnSuccessListener(taskSnapshot -> Log.i(Constants.appLog, "Hotel image deleted"))
+                .addOnFailureListener(e -> Log.e(Constants.appLog, e.getMessage()));
 
+        //Delete instance from db
+        repository.deleteHotel(hotel.getId()).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.i(Constants.appLog, response.body());
+                view.onDeleteSuccess();
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.e(Constants.appLog, t.getMessage());
+                view.onDeleteFailed();
+            }
+        });
     }
 }

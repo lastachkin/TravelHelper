@@ -17,6 +17,6 @@ public interface HotelEditContract {
     interface Presenter {
         void onScreenLoaded(String title, String city);
         void onSaveButtonClicked(Uri uri, Hotels hotel);
-        void onDeleteButtonClicked();
+        void onDeleteButtonClicked(Hotels hotel);
     }
 }
