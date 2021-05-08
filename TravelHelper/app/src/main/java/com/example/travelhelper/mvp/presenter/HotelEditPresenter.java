@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.travelhelper.App;
 import com.example.travelhelper.R;
 import com.example.travelhelper.mvp.contract.HotelEditContract;
 import com.example.travelhelper.mvp.repository.Repository;
@@ -15,7 +14,6 @@ import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.Call;
@@ -59,8 +57,7 @@ public class HotelEditPresenter implements HotelEditContract.Presenter {
                     .addOnFailureListener(e -> Log.e(Constants.appLog, e.getMessage()));
         }
 
-        Call<String> call = App.getInstance().getApi().updateHotel(hotel.getId(), hotel);
-        call.enqueue(new Callback<String>() {
+        repository.updateHotel(hotel.getId(), hotel).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.i(Constants.appLog, response.body());
@@ -75,6 +72,7 @@ public class HotelEditPresenter implements HotelEditContract.Presenter {
 
     @Override
     public void onDeleteButtonClicked(Hotels hotel) {
+        // TODO: 08.05.2021 Also delete all rooms and reservation by hotel id
         //Delete image from Firebase
         FirebaseStorage.getInstance().getReference().child("hotels/"+ hotel.getTitle() + "_" + hotel.getCity()).delete()
                 .addOnSuccessListener(taskSnapshot -> Log.i(Constants.appLog, "Hotel image deleted"))

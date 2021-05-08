@@ -47,6 +47,10 @@ public class Repository {
         return App.getInstance().getApi().deleteHotel(id);
     }
 
+    public Call<String> updateHotel(String id, Hotels hotel){
+        return App.getInstance().getApi().updateHotel(id, hotel);
+    }
+
     public UploadTask uploadHotelPicture(Uri uri, String title){
         StorageReference imageRef = firebaseStorageRef.child("hotels/" + title);
         return imageRef.putFile(uri);
