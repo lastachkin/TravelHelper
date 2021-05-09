@@ -30,6 +30,8 @@ public interface TravelHelperApi {
     Observable<String> createUser(@Body Users user);
     @POST("api/hotel")
     Observable<String> createHotel(@Body Hotels hotel);
+    @POST("api/room")
+    Observable<String> createRoom(@Body Rooms room);
 
     @PUT("api/hotel/{id}")
     Call<String> updateHotel(@Path("id") String id, @Body Hotels hotel);

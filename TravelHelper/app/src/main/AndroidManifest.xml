@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelHelper"
         android:usesCleartextTraffic="true">
-        <activity android:name=".mvp.view.RoomOverviewActivity"></activity>
+        <activity android:name=".mvp.view.CreateRoomActivity"></activity>
+        <activity android:name=".mvp.view.RoomEditActivity" />
+        <activity android:name=".mvp.view.RoomOverviewActivity" />
         <activity android:name=".mvp.view.HotelEditActivity" />
         <activity android:name=".mvp.view.HotelDetailsActivity" />
         <activity android:name=".mvp.view.CreateHotelActivity" />

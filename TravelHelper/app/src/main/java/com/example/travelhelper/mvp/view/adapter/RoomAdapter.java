@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.travelhelper.R;
 import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.repository.model.Rooms;
+import com.example.travelhelper.mvp.view.RoomEditActivity;
 import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
 import com.google.firebase.storage.FirebaseStorage;
@@ -35,7 +36,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder>{
     @Override
     public RoomAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_room_item,parent,false);
-        //view.findViewById(R.id.roomImage).setClipToOutline(true);
+        view.findViewById(R.id.roomImage).setClipToOutline(true);
         return new ViewHolder(view);
     }
 
@@ -82,17 +83,16 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder>{
         @Override
         public void onClick(View v) {
             Intent intent;
-            Extensions.successToast("click");
             //if(!Constants.isAdmin) {
-                //intent = new Intent(v.getContext(), HotelDetailsActivity.class);
+                intent = new Intent(v.getContext(), RoomEditActivity.class);
             //} else
                 //intent = new Intent(v.getContext(), HotelEditActivity.class);
 
-            //intent.putExtra("Id", hotels.get(getLayoutPosition()).getId());
-            //intent.putExtra("Title", hotels.get(getLayoutPosition()).getTitle());
-            //intent.putExtra("City", hotels.get(getLayoutPosition()).getCity());
-            //intent.putExtra("Address", hotels.get(getLayoutPosition()).getAddress());
-            //v.getContext().startActivity(intent);
+            intent.putExtra("Id", rooms.get(getLayoutPosition()).getId());
+            intent.putExtra("Type", rooms.get(getLayoutPosition()).getType());
+            intent.putExtra("Cost", String.valueOf(rooms.get(getLayoutPosition()).getCost()));
+            intent.putExtra("Count", String.valueOf(rooms.get(getLayoutPosition()).getCount()));
+            v.getContext().startActivity(intent);
         }
     }
 }

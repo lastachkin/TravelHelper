@@ -4,6 +4,7 @@ import android.net.Uri;
 
 import com.example.travelhelper.App;
 import com.example.travelhelper.mvp.repository.model.Hotels;
+import com.example.travelhelper.mvp.repository.model.Rooms;
 import com.example.travelhelper.mvp.repository.model.Users;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -35,6 +36,10 @@ public class Repository {
         return App.getInstance().getApi().createHotel(hotel);
     }
 
+    public Observable<String> createRoom(Rooms room){
+        return App.getInstance().getApi().createRoom(room);
+    }
+
     public Observable<String> searchHotel(String title, String city){
         return App.getInstance().getApi().searchHotel(title, city);
     }
@@ -53,6 +58,11 @@ public class Repository {
 
     public UploadTask uploadHotelPicture(Uri uri, String title){
         StorageReference imageRef = firebaseStorageRef.child("hotels/" + title);
+        return imageRef.putFile(uri);
+    }
+
+    public UploadTask uploadRoomPicture(Uri uri, String title){
+        StorageReference imageRef = firebaseStorageRef.child("rooms/" + title);
         return imageRef.putFile(uri);
     }
 }

@@ -41,7 +41,9 @@ public class AdminActivity extends AppCompatActivity implements AdminContract.Vi
                 hotels.clear();
 
                 List<Hotels> hotelsResponse = response.body();
-                hotels.addAll(hotelsResponse);
+                if (hotelsResponse != null) {
+                    hotels.addAll(hotelsResponse);
+                }
 
                 adapter.notifyDataSetChanged();
             }
