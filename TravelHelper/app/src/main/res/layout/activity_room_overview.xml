@@ -4,45 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mvp.view.AdminActivity"
+    tools:context=".mvp.view.RoomOverviewActivity"
     android:background="@drawable/bg">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/main_txt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Администратор"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/createHotel_btn"
+        android:id="@+id/createRoom_btn"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="70dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="70dp"
         android:background="@drawable/btn_bg"
-        android:text="Добавить отель"
+        android:text="Добавить номер"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_txt" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/hotelList"
+        android:id="@+id/roomList"
         android:layout_width="0dp"
         android:layout_height="580dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createHotel_btn"
-        tools:listitem="@layout/list_hotel_item" />
+        app:layout_constraintTop_toBottomOf="@+id/createRoom_btn"
+        tools:listitem="@layout/list_room_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

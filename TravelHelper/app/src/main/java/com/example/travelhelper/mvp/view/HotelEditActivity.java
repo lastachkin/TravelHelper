@@ -8,11 +8,13 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 
 import com.example.travelhelper.databinding.ActivityHotelEditBinding;
 import com.example.travelhelper.mvp.contract.HotelEditContract;
 import com.example.travelhelper.mvp.presenter.HotelEditPresenter;
 import com.example.travelhelper.mvp.repository.model.Hotels;
+import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
 
 public class HotelEditActivity extends AppCompatActivity implements HotelEditContract.View {
@@ -44,8 +46,9 @@ public class HotelEditActivity extends AppCompatActivity implements HotelEditCon
         binding.saveBtn.setOnClickListener(v -> presenter.onSaveButtonClicked(imageUri, new Hotels(id, binding.title.getText().toString(), binding.city.getText().toString(), binding.address.getText().toString())));
         binding.deleteBtn.setOnClickListener(v -> presenter.onDeleteButtonClicked(new Hotels(id, title, city, address)));
         binding.addRoomBtn.setOnClickListener(v -> {
-            //putextra hotel info
-            //start activity for room types editing
+            Intent intent = new Intent(this, RoomOverviewActivity.class);
+            intent.putExtra("hotelId", id);
+            startActivity(intent);
         });
 
         binding.hotelPic.setOnClickListener(view -> {

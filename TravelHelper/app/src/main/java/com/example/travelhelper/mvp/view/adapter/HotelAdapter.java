@@ -43,13 +43,11 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(HotelAdapter.ViewHolder holder, int position) {
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
         // TODO: 06.05.2021 Move logic to repo
         Hotels hotel = hotels.get(position);
         try{
             final File localFile = File.createTempFile("tmp", "jpg");
-            storageRef.child("hotels/"+ hotel.getTitle() + "_" + hotel.getCity()).getFile(localFile)
+            FirebaseStorage.getInstance().getReference().child("hotels/"+ hotel.getTitle() + "_" + hotel.getCity()).getFile(localFile)
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         holder.hotelImageView.setImageBitmap(bitmap);
