@@ -45,7 +45,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder>{
         Rooms room = rooms.get(position);
         try{
             final File localFile = File.createTempFile("tmp", "jpg");
-            FirebaseStorage.getInstance().getReference().child("rooms/"+ room.getHotelId() + "_" + room.getType()).getFile(localFile)
+            FirebaseStorage.getInstance().getReference().child("rooms/" + room.getHotelId() + "_" + room.getType()).getFile(localFile)
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         holder.roomImageView.setImageBitmap(bitmap);
@@ -58,8 +58,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder>{
         catch (IOException e){
             e.printStackTrace();
         }
+
         holder.typeView.setText(room.getType());
-        String costToShow = String.valueOf(room.getCost()) + "$";
+        String costToShow = room.getCost() + "$";
         holder.costView.setText(costToShow);
     }
 
@@ -89,6 +90,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder>{
                 //intent = new Intent(v.getContext(), HotelEditActivity.class);
 
             intent.putExtra("Id", rooms.get(getLayoutPosition()).getId());
+            intent.putExtra("HotelId", rooms.get(getLayoutPosition()).getHotelId());
             intent.putExtra("Type", rooms.get(getLayoutPosition()).getType());
             intent.putExtra("Cost", String.valueOf(rooms.get(getLayoutPosition()).getCost()));
             intent.putExtra("Count", String.valueOf(rooms.get(getLayoutPosition()).getCount()));

@@ -1,10 +1,17 @@
 package com.example.travelhelper.mvp.repository.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Rooms {
+    @SerializedName("id")
     public String Id;
+    @SerializedName("hotelId")
     public String HotelId;
+    @SerializedName("count")
     public int Count;
+    @SerializedName("cost")
     public int Cost;
+    @SerializedName("type")
     public String Type;
 
     public Rooms(String id, String hotelId, int count, int cost, String type) {
