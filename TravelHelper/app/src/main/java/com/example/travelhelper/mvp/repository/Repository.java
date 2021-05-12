@@ -52,8 +52,16 @@ public class Repository {
         return App.getInstance().getApi().deleteHotel(id);
     }
 
+    public Call<String> deleteRoom(String id){
+        return App.getInstance().getApi().deleteRoom(id);
+    }
+
     public Call<String> updateHotel(String id, Hotels hotel){
         return App.getInstance().getApi().updateHotel(id, hotel);
+    }
+
+    public Call<String> updateRoom(String id, Rooms room){
+        return App.getInstance().getApi().updateRoom(id, room);
     }
 
     public UploadTask uploadHotelPicture(Uri uri, String title){

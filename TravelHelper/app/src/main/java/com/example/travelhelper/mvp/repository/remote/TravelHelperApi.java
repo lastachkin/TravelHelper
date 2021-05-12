@@ -35,7 +35,11 @@ public interface TravelHelperApi {
 
     @PUT("api/hotel/{id}")
     Call<String> updateHotel(@Path("id") String id, @Body Hotels hotel);
+    @PUT("api/room/{id}")
+    Call<String> updateRoom(@Path("id") String id, @Body Rooms room);
 
     @DELETE("api/hotel/{id}")
     Call<String> deleteHotel(@Path("id") String id);
+    @DELETE("api/room/{id}")
+    Call<String> deleteRoom(@Path("id") String id);
 }
