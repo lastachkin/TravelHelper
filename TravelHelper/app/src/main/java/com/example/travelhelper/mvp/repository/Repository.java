@@ -48,6 +48,10 @@ public class Repository {
         return App.getInstance().getApi().getHotelList();
     }
 
+    public Call<List<Rooms>> getRoomList(String hotelId){
+        return App.getInstance().getApi().getRoomList(hotelId);
+    }
+
     public Call<String> deleteHotel(String id){
         return App.getInstance().getApi().deleteHotel(id);
     }

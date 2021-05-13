@@ -27,20 +27,24 @@ public class HotelDetailsActivity extends AppCompatActivity implements HotelDeta
         presenter = new HotelDetailsPresenter(this);
 
         Bundle bundle = getIntent().getExtras();
-        if(bundle != null){
-            String title = (String) bundle.get("Title");
-            String city = (String) bundle.get("City");
-            String address = (String) bundle.get("Address");
-            String addressToDisplay = city + ", " + address;
-            String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisl nisl, tempor eu rutrum ut, vulputate in metus. Vestibulum vel tellus laoreet, accumsan dui vel, efficitur justo. Proin dictum elementum leo, vitae gravida sapien tincidunt ac.";
+        String id = (String) bundle.get("Id");
+        String title = (String) bundle.get("Title");
+        String city = (String) bundle.get("City");
+        String address = (String) bundle.get("Address");
+        String addressToDisplay = city + ", " + address;
+        String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisl nisl, tempor eu rutrum ut, vulputate in metus. Vestibulum vel tellus laoreet, accumsan dui vel, efficitur justo. Proin dictum elementum leo, vitae gravida sapien tincidunt ac.";
 
-            presenter.onScreenLoaded(title, city, address);
-            binding.title.setText(title);
-            binding.address.setText(addressToDisplay);
-            binding.description.setText(description);
-            binding.description.setMovementMethod(new ScrollingMovementMethod());
-        }
-        binding.reservBtn.setOnClickListener(v -> startActivity(new Intent(this, RegistrationActivity.class)));
+        presenter.onScreenLoaded(title, city, address);
+        binding.title.setText(title);
+        binding.address.setText(addressToDisplay);
+        binding.description.setText(description);
+        binding.description.setMovementMethod(new ScrollingMovementMethod());
+
+        binding.reservBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, RoomSelectionActivity.class);
+            intent.putExtra("HotelId", id);
+            startActivity(intent);
+        });
     }
 
     @Override
