@@ -14,8 +14,10 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelhelper.R;
+import com.example.travelhelper.mvp.presenter.CreateReservationPresenter;
 import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.repository.model.Rooms;
+import com.example.travelhelper.mvp.view.CreateReservationActivity;
 import com.example.travelhelper.mvp.view.RoomEditActivity;
 import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
@@ -84,10 +86,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder>{
         @Override
         public void onClick(View v) {
             Intent intent;
-            //if(!Constants.isAdmin) {
+            if(!Constants.isAdmin)
+                intent = new Intent(v.getContext(), CreateReservationActivity.class);
+            else
                 intent = new Intent(v.getContext(), RoomEditActivity.class);
-            //} else
-                //intent = new Intent(v.getContext(), HotelEditActivity.class);
 
             intent.putExtra("Id", rooms.get(getLayoutPosition()).getId());
             intent.putExtra("HotelId", rooms.get(getLayoutPosition()).getHotelId());
