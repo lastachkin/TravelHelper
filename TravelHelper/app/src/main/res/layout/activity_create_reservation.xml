@@ -61,6 +61,19 @@
         app:layout_constraintTop_toBottomOf="@+id/type"
         tools:text="@tools:sample/full_names" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/startDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:text="date"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cost" />
+
 <!--    <androidx.appcompat.widget.AppCompatButton-->
 <!--        android:id="@+id/reserv_btn"-->
 <!--        android:layout_width="0dp"-->
