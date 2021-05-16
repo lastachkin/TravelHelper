@@ -1,6 +1,7 @@
 package com.example.travelhelper.mvp.repository.remote;
 
 import com.example.travelhelper.mvp.repository.model.Hotels;
+import com.example.travelhelper.mvp.repository.model.Reservations;
 import com.example.travelhelper.mvp.repository.model.Rooms;
 import com.example.travelhelper.mvp.repository.model.Users;
 
@@ -32,6 +33,8 @@ public interface TravelHelperApi {
     Observable<String> createHotel(@Body Hotels hotel);
     @POST("api/room")
     Observable<String> createRoom(@Body Rooms room);
+    @POST("api/reservation")
+    Observable<String> createReservation(@Body Reservations reservation);
 
     @PUT("api/hotel/{id}")
     Call<String> updateHotel(@Path("id") String id, @Body Hotels hotel);

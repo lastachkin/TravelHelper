@@ -4,6 +4,7 @@ import android.net.Uri;
 
 import com.example.travelhelper.App;
 import com.example.travelhelper.mvp.repository.model.Hotels;
+import com.example.travelhelper.mvp.repository.model.Reservations;
 import com.example.travelhelper.mvp.repository.model.Rooms;
 import com.example.travelhelper.mvp.repository.model.Users;
 import com.google.firebase.storage.FirebaseStorage;
@@ -28,16 +29,20 @@ public class Repository {
         return App.getInstance().getApi().createUser(user);
     }
 
-    public Observable<String> searchUser(String login, String password){
-        return App.getInstance().getApi().searchUser(login, password);
-    }
-
     public Observable<String> createHotel(Hotels hotel){
         return App.getInstance().getApi().createHotel(hotel);
     }
 
     public Observable<String> createRoom(Rooms room){
         return App.getInstance().getApi().createRoom(room);
+    }
+
+    public Observable<String> createReservation(Reservations reservation){
+        return App.getInstance().getApi().createReservation(reservation);
+    }
+
+    public Observable<String> searchUser(String login, String password){
+        return App.getInstance().getApi().searchUser(login, password);
     }
 
     public Observable<String> searchHotel(String title, String city){

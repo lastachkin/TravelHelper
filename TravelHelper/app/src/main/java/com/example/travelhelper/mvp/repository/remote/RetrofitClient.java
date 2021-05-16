@@ -1,6 +1,10 @@
 package com.example.travelhelper.mvp.repository.remote;
 
 import com.example.travelhelper.utils.Constants;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.Date;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -18,12 +22,13 @@ public class RetrofitClient {
             interceptor = new HttpLoggingInterceptor();
             interceptor.level(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
             instance = new Retrofit.Builder()
                     .baseUrl(Constants.baseUrl)
                     .client(client)
                     .addConverterFactory(ScalarsConverterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
         }

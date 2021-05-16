@@ -42,7 +42,7 @@ public class HotelDetailsPresenter implements HotelDetailsContract.Presenter {
                         view.setHotelImageId(R.drawable.camera_lens);
                     });
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(Constants.appLog, e.getMessage());
         }
     }
 }

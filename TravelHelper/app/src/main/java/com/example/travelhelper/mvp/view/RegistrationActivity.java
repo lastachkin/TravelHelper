@@ -12,6 +12,8 @@ import com.example.travelhelper.utils.Extensions;
 import android.content.Intent;
 import android.os.Bundle;
 
+import java.util.UUID;
+
 public class RegistrationActivity extends AppCompatActivity implements RegistrationContract.View {
 
     RegistrationPresenter presenter;
@@ -25,7 +27,8 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
         presenter = new RegistrationPresenter(this);
         binding.registerBtn.setOnClickListener(v -> {
             presenter.onRegistrationButtonClicked(
-                    new Users(binding.firstname.getText().toString(),
+                    new Users(UUID.randomUUID().toString(),
+                             binding.firstname.getText().toString(),
                              binding.lastname.getText().toString(),
                              binding.email.getText().toString(),
                              binding.phone.getText().toString(),

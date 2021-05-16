@@ -2,9 +2,12 @@ package com.example.travelhelper.mvp.presenter;
 
 import android.util.Log;
 
+import com.example.travelhelper.App;
 import com.example.travelhelper.mvp.contract.LoginContract;
 import com.example.travelhelper.mvp.repository.Repository;
+import com.example.travelhelper.mvp.repository.model.Users;
 import com.example.travelhelper.utils.Constants;
+import com.google.gson.Gson;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -34,7 +37,10 @@ public class LoginPresenter implements LoginContract.Presenter {
                         view.onUserNotFound();
                     else if (s.contains("Incorrect password"))
                         view.onUserIncorrectPass();
-                    else
+                    else{
+                        Gson gson = new Gson();
+                        Constants.currentUser = gson.fromJson(s, Users.class);
+                    }
                         view.onUserFound();
                 }, throwable -> {
                     Log.e(Constants.appLog, throwable.getMessage());
