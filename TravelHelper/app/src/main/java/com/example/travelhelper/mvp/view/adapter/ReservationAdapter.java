@@ -14,12 +14,8 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelhelper.R;
-import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.repository.model.Reservations;
-import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
-import com.example.travelhelper.mvp.repository.model.Rooms;
-import com.example.travelhelper.mvp.view.CreateReservationActivity;
-import com.example.travelhelper.mvp.view.RoomEditActivity;
+import com.example.travelhelper.mvp.view.ReservationDetailsActivity;
 import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
 import com.google.firebase.storage.FirebaseStorage;
@@ -83,19 +79,18 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 
         @Override
         public void onClick(View v) {
-            Extensions.successToast("Click");
-            //Intent intent;
+            Intent intent;
             //if(!Constants.isAdmin)
-                //intent = new Intent(v.getContext(), CreateReservationActivity.class);
+                intent = new Intent(v.getContext(), ReservationDetailsActivity.class);
             ///else
                 //intent = new Intent(v.getContext(), RoomEditActivity.class);
 
-            //intent.putExtra("Id", rooms.get(getLayoutPosition()).getId());
-            //intent.putExtra("HotelId", rooms.get(getLayoutPosition()).getHotelId());
-            //intent.putExtra("Type", rooms.get(getLayoutPosition()).getType());
-            //intent.putExtra("Cost", String.valueOf(rooms.get(getLayoutPosition()).getCost()));
-            //intent.putExtra("Count", String.valueOf(rooms.get(getLayoutPosition()).getCount()));
-            //v.getContext().startActivity(intent);
+            intent.putExtra("Id", reservations.get(getLayoutPosition()).getId());
+            intent.putExtra("RoomId", reservations.get(getLayoutPosition()).getRoomId());
+            intent.putExtra("UserId", reservations.get(getLayoutPosition()).getUserId());
+            intent.putExtra("StartDate", String.valueOf(reservations.get(getLayoutPosition()).getStartDate()));
+            intent.putExtra("EndDate", String.valueOf(reservations.get(getLayoutPosition()).getEndDate()));
+            v.getContext().startActivity(intent);
         }
     }
 }

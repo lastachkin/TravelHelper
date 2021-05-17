@@ -7,13 +7,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.travelhelper.R;
 import com.example.travelhelper.databinding.ActivityHomeBinding;
-import com.example.travelhelper.mvp.contract.HomeContract;
-import com.example.travelhelper.mvp.presenter.HomePresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class HomeActivity extends AppCompatActivity implements HomeContract.View {
+public class HomeActivity extends AppCompatActivity {
 
-    HomePresenter presenter;
     ActivityHomeBinding binding;
 
     @Override
@@ -22,19 +19,9 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        presenter = new HomePresenter(this);
-        presenter.initLoginField();
-
         binding.bottomNavigation.setOnNavigationItemSelectedListener(navListener);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HotelsFragment()).commit();
-        }
-    }
-
-    @Override
-    public void setLogin(String login) {
-        //binding.username.setText(login);
+        if (savedInstanceState == null)
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HotelsFragment()).commit();
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -53,8 +40,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
                 else if (id == R.id.nav_search)
                     selectedFragment = new SearchFragment();
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        selectedFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                 return true;
-            };
+    };
 }

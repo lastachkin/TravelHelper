@@ -48,4 +48,6 @@ public interface TravelHelperApi {
     Call<String> deleteHotel(@Path("id") String id);
     @DELETE("api/room/{id}")
     Call<String> deleteRoom(@Path("id") String id);
+    @DELETE("api/reservation/{id}")
+    Call<String> deleteReservation(@Path("id") String id);
 }
