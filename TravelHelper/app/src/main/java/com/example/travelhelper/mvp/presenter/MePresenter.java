@@ -1,11 +1,19 @@
 package com.example.travelhelper.mvp.presenter;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import com.example.travelhelper.mvp.contract.MeContract;
 import com.example.travelhelper.mvp.repository.Repository;
+import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
+import com.example.travelhelper.mvp.repository.model.Users;
+import com.example.travelhelper.utils.Constants;
 
 import io.reactivex.disposables.CompositeDisposable;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MePresenter implements MeContract.Presenter {
@@ -38,11 +46,22 @@ public class MePresenter implements MeContract.Presenter {
 //                .subscribe(view::onUserUpdated,
 //                        throwable -> Log.e(Constants.appLog, throwable.getMessage())));
         //onScreenLoaded();
+
     }
 
     @Override
     public void onScreenLoaded() {
-        //get data from db by user
-        //set data to fields on screen
+        repository.getUserById(Constants.currentUser.getId()).enqueue(new Callback<Users>() {
+            @Override
+            public void onResponse(Call<Users> call, Response<Users> response) {
+                if (response.body() != null){
+                    view.setEmail(response.body().getEmail());
+                }
+            }
+            @Override
+            public void onFailure(Call<Users> call, Throwable t) {
+                Log.e(Constants.appLog, t.getMessage());
+            }
+        });
     }
 }

@@ -62,6 +62,10 @@ public class Repository {
         return App.getInstance().getApi().getReservationDetails(roomId);
     }
 
+    public Call<Users> getUserById(String id){
+        return App.getInstance().getApi().getUserById(id);
+    }
+
     public Call<String> deleteHotel(String id){
         return App.getInstance().getApi().deleteHotel(id);
     }

@@ -37,10 +37,9 @@ public class LoginPresenter implements LoginContract.Presenter {
                         view.onUserNotFound();
                     else if (s.contains("Incorrect password"))
                         view.onUserIncorrectPass();
-                    else{
-                        Gson gson = new Gson();
-                        Constants.currentUser = gson.fromJson(s, Users.class);
-                    }
+                    
+                    Gson gson = new Gson();
+                    Constants.currentUser = gson.fromJson(s, Users.class);
                         view.onUserFound();
                 }, throwable ->
                     Log.e(Constants.appLog, throwable.getMessage()))

@@ -1,13 +1,23 @@
 package com.example.travelhelper.mvp.repository.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Users {
+    @SerializedName("id")
     public String Id;
+    @SerializedName("firstname")
     public String Firstname;
+    @SerializedName("lastname")
     public String Lastname;
+    @SerializedName("phone")
     public String Phone;
+    @SerializedName("email")
     public String Email;
+    @SerializedName("login")
     public String Login;
+    @SerializedName("password")
     public String Password;
+    @SerializedName("role")
     public String Role;
 
     public Users(String id, String firstname, String lastname, String phone, String email, String login, String password, String role) {

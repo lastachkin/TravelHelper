@@ -23,7 +23,7 @@ public class MeFragment extends Fragment implements MeContract.View {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentMeBinding.inflate(getLayoutInflater());
         presenter = new MePresenter(this);
-        //presenter.onScreenLoaded();
+        presenter.onScreenLoaded();
         binding.editBtn.setOnClickListener(view -> presenter.onEditButtonClicked());
         binding.saveBtn.setOnClickListener(view -> presenter.onSaveButtonClicked(binding.password.getText().toString()));//put others fields
         return binding.getRoot();

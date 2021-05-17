@@ -31,6 +31,8 @@ public interface TravelHelperApi {
     Call<List<Reservations>> getReservationList(@Path("userId") String userId);
     @GET("api/reservationdetails")
     Call<ReservationsResponse> getReservationDetails(@Query("roomId") String roomId);
+    @GET("api/user/{id}")
+    Call<Users> getUserById(@Path("id") String id);
 
     @POST("api/user")
     Observable<String> createUser(@Body Users user);
