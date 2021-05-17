@@ -13,8 +13,11 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.travelhelper.App;
 import com.example.travelhelper.R;
+import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.repository.model.Reservations;
+import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
 import com.example.travelhelper.mvp.view.ReservationDetailsActivity;
 import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
@@ -23,6 +26,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder>{
     private static List<Reservations> reservations;
@@ -88,6 +95,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             intent.putExtra("Id", reservations.get(getLayoutPosition()).getId());
             intent.putExtra("RoomId", reservations.get(getLayoutPosition()).getRoomId());
             intent.putExtra("UserId", reservations.get(getLayoutPosition()).getUserId());
+            intent.putExtra("Status", reservations.get(getLayoutPosition()).getStatus());
             intent.putExtra("StartDate", String.valueOf(reservations.get(getLayoutPosition()).getStartDate()));
             intent.putExtra("EndDate", String.valueOf(reservations.get(getLayoutPosition()).getEndDate()));
             v.getContext().startActivity(intent);

@@ -5,6 +5,7 @@ import android.net.Uri;
 import com.example.travelhelper.App;
 import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.repository.model.Reservations;
+import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
 import com.example.travelhelper.mvp.repository.model.Rooms;
 import com.example.travelhelper.mvp.repository.model.Users;
 import com.google.firebase.storage.FirebaseStorage;
@@ -55,6 +56,10 @@ public class Repository {
 
     public Call<List<Rooms>> getRoomList(String hotelId){
         return App.getInstance().getApi().getRoomList(hotelId);
+    }
+
+    public Call<ReservationsResponse> getReservationDetails(String roomId){
+        return App.getInstance().getApi().getReservationDetails(roomId);
     }
 
     public Call<String> deleteHotel(String id){

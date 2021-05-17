@@ -9,6 +9,10 @@ public interface ReservationDetailsContract {
         void setHotelImageId(int id);
         void onDeleteSuccess();
         void onDeleteFailed();
+        void setType(String type);
+        void setCost(String cost);
+        void setCity(String city);
+        void setAddress(String address);
     }
 
     interface Presenter {

@@ -5,12 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.example.travelhelper.App;
 import com.example.travelhelper.databinding.ActivityReservationDetailsBinding;
 import com.example.travelhelper.mvp.contract.ReservationDetailsContract;
 import com.example.travelhelper.mvp.presenter.ReservationDetailsPresenter;
-import com.example.travelhelper.mvp.repository.model.Hotels;
+import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
+import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ReservationDetailsActivity extends AppCompatActivity implements ReservationDetailsContract.View {
     ActivityReservationDetailsBinding binding;
@@ -48,5 +55,25 @@ public class ReservationDetailsActivity extends AppCompatActivity implements Res
     @Override
     public void onDeleteFailed() {
         Extensions.errorToast("Ошибка");
+    }
+
+    @Override
+    public void setType(String type) {
+        binding.type.setText(type);
+    }
+
+    @Override
+    public void setCost(String cost) {
+        binding.cost.setText(cost);
+    }
+
+    @Override
+    public void setCity(String city) {
+        binding.city.setText(city);
+    }
+
+    @Override
+    public void setAddress(String address) {
+        binding.address.setText(address);
     }
 }

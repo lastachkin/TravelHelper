@@ -4,10 +4,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.example.travelhelper.App;
 import com.example.travelhelper.R;
 import com.example.travelhelper.mvp.contract.ReservationDetailsContract;
 import com.example.travelhelper.mvp.repository.Repository;
+import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
 import com.example.travelhelper.utils.Constants;
+import com.example.travelhelper.utils.Extensions;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.File;
@@ -22,6 +25,7 @@ public class ReservationDetailsPresenter implements ReservationDetailsContract.P
     private final ReservationDetailsContract.View view;
     Repository repository;
     CompositeDisposable mDisposable;
+    ReservationsResponse details;
 
     public ReservationDetailsPresenter(ReservationDetailsContract.View view){
         this.view = view;
@@ -48,6 +52,22 @@ public class ReservationDetailsPresenter implements ReservationDetailsContract.P
         } catch (IOException e) {
             Log.e(Constants.appLog, e.getMessage());
         }
+
+        repository.getReservationDetails(roomId).enqueue(new Callback<ReservationsResponse>() {
+            @Override
+            public void onResponse(Call<ReservationsResponse> call, Response<ReservationsResponse> response) {
+                if (response.body() != null){
+                    view.setType(response.body().getType());
+                    view.setCost(response.body().getCost() + "$ per night");
+                    view.setCity(response.body().getCity());
+                    view.setAddress(response.body().getAddress());
+                }
+            }
+            @Override
+            public void onFailure(Call<ReservationsResponse> call, Throwable t) {
+                Log.e(Constants.appLog, t.getMessage());
+            }
+        });
     }
 
     @Override

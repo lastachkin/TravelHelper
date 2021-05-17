@@ -30,8 +30,6 @@
         android:id="@+id/type"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:fontFamily="sans-serif-smallcaps"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -47,9 +45,7 @@
         android:id="@+id/cost"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="35dp"
         android:fontFamily="sans-serif-smallcaps"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -62,35 +58,49 @@
         tools:text="@tools:sample/full_names" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/description"
+        android:id="@+id/city"
         android:layout_width="0dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:scrollbars = "vertical"
         android:fontFamily="sans-serif-smallcaps"
-        android:justificationMode="inter_word"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@android:color/black"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cost"
-        tools:text="@tools:sample/lorem/random" />
+        tools:text="@tools:sample/full_names" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city"
+        tools:text="@tools:sample/full_names" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/delete_btn"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="70dp"
         android:background="@drawable/btn_bg"
         android:text="Отменить"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/address" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

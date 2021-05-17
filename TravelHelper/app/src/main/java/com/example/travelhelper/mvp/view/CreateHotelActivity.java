@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.example.travelhelper.databinding.ActivityCreateHotelBinding;
-import com.example.travelhelper.mvp.contract.AdminContract;
 import com.example.travelhelper.mvp.contract.CreateHotelContract;
 import com.example.travelhelper.mvp.presenter.CreateHotelPresenter;
 import com.example.travelhelper.mvp.repository.model.Hotels;

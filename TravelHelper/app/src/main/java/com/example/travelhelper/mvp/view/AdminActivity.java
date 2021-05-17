@@ -9,7 +9,6 @@ import android.util.Log;
 
 import com.example.travelhelper.App;
 import com.example.travelhelper.databinding.ActivityAdminBinding;
-import com.example.travelhelper.mvp.contract.AdminContract;
 import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.view.adapter.HotelAdapter;
 import com.example.travelhelper.utils.Constants;
@@ -21,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AdminActivity extends AppCompatActivity implements AdminContract.View {
+public class AdminActivity extends AppCompatActivity{
     ActivityAdminBinding binding;
     List<Hotels> hotels;
 

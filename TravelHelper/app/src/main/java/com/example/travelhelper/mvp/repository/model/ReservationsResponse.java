@@ -1,21 +1,54 @@
 package com.example.travelhelper.mvp.repository.model;
 
+import androidx.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class ReservationsResponse {
-    public String Id;
-    public String UserId;
-    public String RoomId;
-    public String Status;
-    public String StartDate;
-    public String EndDate;
+    @SerializedName("title")
+    public String Title;
+    @SerializedName("type")
+    public String Type;
+    @SerializedName("city")
+    public String City;
+    @SerializedName("address")
+    public String Address;
+    @SerializedName("cost")
+    public int Cost;
 
-    public ReservationsResponse(String id, String userId, String roomId, String status, String startDate, String endDate) {
-        Id = id;
-        UserId = userId;
-        RoomId = roomId;
-        Status = status;
-        StartDate = startDate;
-        EndDate = endDate;
+    public ReservationsResponse(String title, String type, String city, String address, int cost) {
+        Title = title;
+        Type = type;
+        City = city;
+        Address = address;
+        Cost = cost;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public int getCost() {
+        return Cost;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Title:" + getTitle() + " Type:" + getType() + " City:" + getCity() + " Address:" + getAddress();
     }
 }
