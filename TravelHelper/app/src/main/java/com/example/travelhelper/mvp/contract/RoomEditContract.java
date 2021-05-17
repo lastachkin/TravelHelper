@@ -17,7 +17,7 @@ public interface RoomEditContract {
     }
 
     interface Presenter {
-        void onScreenLoaded(String hotelId, String type);
+        void onScreenLoaded(String roomId);
         void onDeleteButtonClicked(Rooms room);
         void onSaveButtonClicked(Uri uri, Rooms room);
     }

@@ -15,39 +15,40 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelhelper.R;
 import com.example.travelhelper.mvp.repository.model.Hotels;
-import com.example.travelhelper.mvp.view.HotelDetailsActivity;
-import com.example.travelhelper.mvp.view.HotelEditActivity;
+import com.example.travelhelper.mvp.repository.model.Reservations;
+import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
+import com.example.travelhelper.mvp.repository.model.Rooms;
+import com.example.travelhelper.mvp.view.CreateReservationActivity;
+import com.example.travelhelper.mvp.view.RoomEditActivity;
 import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
-    private static List<Hotels> hotels;
+public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder>{
+    private static List<Reservations> reservations;
 
-    public HotelAdapter(List<Hotels> hotels) {
-        HotelAdapter.hotels = hotels;
+    public ReservationAdapter(List<Reservations> reservations) {
+        ReservationAdapter.reservations = reservations;
     }
 
     @NonNull
     @Override
-    public HotelAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_hotel_item,parent,false);
         view.findViewById(R.id.hotelImage).setClipToOutline(true);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(HotelAdapter.ViewHolder holder, int position) {
-        // TODO: 06.05.2021 Move logic to repo
-        Hotels hotel = hotels.get(position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Reservations reservation = reservations.get(position);
         try{
             final File localFile = File.createTempFile("tmp", "jpg");
-            FirebaseStorage.getInstance().getReference().child("hotels/"+ hotel.getId()).getFile(localFile)//hotel.getTitle() + "_" + hotel.getCity()
+            FirebaseStorage.getInstance().getReference().child("rooms/" + reservation.getRoomId()).getFile(localFile)
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         holder.hotelImageView.setImageBitmap(bitmap);
@@ -60,13 +61,13 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
         catch (IOException e){
             e.printStackTrace();
         }
-        holder.nameView.setText(hotel.getTitle());
-        holder.addressView.setText(hotel.getCity());
+        holder.nameView.setText(reservation.getStartDate().getDate() + "." + (reservation.getStartDate().getMonth() + 1) + "." + (reservation.getStartDate().getYear() + 1900));
+        holder.addressView.setText(reservation.getEndDate().getDate() + "." + (reservation.getEndDate().getMonth() + 1) + "." + (reservation.getEndDate().getYear() + 1900));
     }
 
     @Override
     public int getItemCount() {
-        return hotels.size();
+        return reservations.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -82,17 +83,19 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder>{
 
         @Override
         public void onClick(View v) {
-            Intent intent;
-            if(!Constants.isAdmin) {
-                intent = new Intent(v.getContext(), HotelDetailsActivity.class);
-            } else
-                intent = new Intent(v.getContext(), HotelEditActivity.class);
+            Extensions.successToast("Click");
+            //Intent intent;
+            //if(!Constants.isAdmin)
+                //intent = new Intent(v.getContext(), CreateReservationActivity.class);
+            ///else
+                //intent = new Intent(v.getContext(), RoomEditActivity.class);
 
-            intent.putExtra("Id", hotels.get(getLayoutPosition()).getId());
-            intent.putExtra("Title", hotels.get(getLayoutPosition()).getTitle());
-            intent.putExtra("City", hotels.get(getLayoutPosition()).getCity());
-            intent.putExtra("Address", hotels.get(getLayoutPosition()).getAddress());
-            v.getContext().startActivity(intent);
+            //intent.putExtra("Id", rooms.get(getLayoutPosition()).getId());
+            //intent.putExtra("HotelId", rooms.get(getLayoutPosition()).getHotelId());
+            //intent.putExtra("Type", rooms.get(getLayoutPosition()).getType());
+            //intent.putExtra("Cost", String.valueOf(rooms.get(getLayoutPosition()).getCost()));
+            //intent.putExtra("Count", String.valueOf(rooms.get(getLayoutPosition()).getCount()));
+            //v.getContext().startActivity(intent);
         }
     }
 }

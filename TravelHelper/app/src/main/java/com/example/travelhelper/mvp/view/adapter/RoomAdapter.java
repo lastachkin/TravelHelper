@@ -47,7 +47,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder>{
         Rooms room = rooms.get(position);
         try{
             final File localFile = File.createTempFile("tmp", "jpg");
-            FirebaseStorage.getInstance().getReference().child("rooms/" + room.getHotelId() + "_" + room.getType()).getFile(localFile)
+            FirebaseStorage.getInstance().getReference().child("rooms/" + room.getId()).getFile(localFile)
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         holder.roomImageView.setImageBitmap(bitmap);

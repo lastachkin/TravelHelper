@@ -25,20 +25,9 @@ public class CreateHotelPresenter implements CreateHotelContract.Presenter {
 
     @Override
     public void onCreateHotelButtonClicked(Uri uri, String title, Hotels hotel) {
-//        mDisposable.add(repository.searchHotel(hotel.Title, hotel.City)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(s -> {
-//                    Log.i(Constants.appLog, s);
-//                    if(s.contains("Hotel with such title in this city already exists")){
-//                        view.onCreationFailed();
-//                    }
-//                }, throwable -> {
-//                    Log.e(Constants.appLog, throwable.getMessage());
-//                }));
-
         //Upload image to Firebase
-        repository.uploadHotelPicture(uri, title)
+        //Remove title
+        repository.uploadHotelPicture(uri, hotel.getId())
                 .addOnSuccessListener(taskSnapshot -> Log.i(Constants.appLog, "Hotel image uploaded"))
                 .addOnFailureListener(e -> Log.e(Constants.appLog, e.getMessage()));
 
@@ -51,8 +40,7 @@ public class CreateHotelPresenter implements CreateHotelContract.Presenter {
                         view.onCreationFailed();
                     else
                         view.onCreationSuccess();
-                }, throwable -> {
-                    Log.e(Constants.appLog, throwable.getMessage());
-                }));
+                }, throwable -> Log.e(Constants.appLog, throwable.getMessage()))
+        );
     }
 }

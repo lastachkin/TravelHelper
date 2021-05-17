@@ -8,7 +8,6 @@ import com.example.travelhelper.R;
 import com.example.travelhelper.mvp.contract.CreateReservationContract;
 import com.example.travelhelper.mvp.repository.Repository;
 import com.example.travelhelper.mvp.repository.model.Reservations;
-import com.example.travelhelper.mvp.repository.model.Rooms;
 import com.example.travelhelper.utils.Constants;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -31,10 +30,10 @@ public class CreateReservationPresenter implements CreateReservationContract.Pre
     }
 
     @Override
-    public void onScreenLoaded(String hotelId, String type) {
+    public void onScreenLoaded(String roomId) {
         try{
             final File localFile = File.createTempFile("tmp", "jpg");
-            FirebaseStorage.getInstance().getReference().child("rooms/"+ hotelId + "_" + type).getFile(localFile)
+            FirebaseStorage.getInstance().getReference().child("rooms/"+ roomId).getFile(localFile)
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         view.setRoomImageBitmap(bitmap);
@@ -59,8 +58,7 @@ public class CreateReservationPresenter implements CreateReservationContract.Pre
                         view.onReserveFailed();
                     else
                         view.onReserveSuccess();
-                }, throwable -> Log.e(Constants.appLog, throwable.getMessage())
-                )
+                }, throwable -> Log.e(Constants.appLog, throwable.getMessage()))
         );
     }
 }

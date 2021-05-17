@@ -36,7 +36,7 @@ public class HotelEditActivity extends AppCompatActivity implements HotelEditCon
         String address = (String) bundle.get("Address");
         String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisl nisl, tempor eu rutrum ut, vulputate in metus. Vestibulum vel tellus laoreet, accumsan dui vel, efficitur justo. Proin dictum elementum leo, vitae gravida sapien tincidunt ac.";
 
-        presenter.onScreenLoaded(title, city);
+        presenter.onScreenLoaded(id);
         binding.title.setText(title);
         binding.city.setText(city);
         binding.address.setText(address);

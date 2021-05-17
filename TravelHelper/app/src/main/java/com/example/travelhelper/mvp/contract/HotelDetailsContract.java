@@ -8,6 +8,6 @@ public interface HotelDetailsContract {
         void setHotelImageId(int id);
     }
     interface Presenter {
-        void onScreenLoaded(String title, String city, String address);
+        void onScreenLoaded(String hotelId);
     }
 }

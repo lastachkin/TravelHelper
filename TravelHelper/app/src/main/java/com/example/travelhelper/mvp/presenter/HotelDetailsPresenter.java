@@ -9,7 +9,6 @@ import com.example.travelhelper.mvp.contract.HotelDetailsContract;
 import com.example.travelhelper.mvp.repository.Repository;
 import com.example.travelhelper.utils.Constants;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,11 +27,11 @@ public class HotelDetailsPresenter implements HotelDetailsContract.Presenter {
     }
 
     @Override
-    public void onScreenLoaded(String title, String city, String address) {
+    public void onScreenLoaded(String hotelId) {
         //Set image
         try{
             final File localFile = File.createTempFile("tmp", "jpg");
-            FirebaseStorage.getInstance().getReference().child("hotels/"+ title + "_" + city).getFile(localFile)
+            FirebaseStorage.getInstance().getReference().child("hotels/"+ hotelId).getFile(localFile)
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         view.setHotelImageBitmap(bitmap);

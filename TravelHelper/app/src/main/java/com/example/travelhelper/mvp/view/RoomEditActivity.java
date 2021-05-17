@@ -35,7 +35,7 @@ public class RoomEditActivity extends AppCompatActivity implements RoomEditContr
         binding.cost.setText(cost);
         binding.count.setText(count);
         binding.type.setText(type);
-        presenter.onScreenLoaded(hotelId, type);
+        presenter.onScreenLoaded(id);
 
         binding.deleteBtn.setOnClickListener(v -> presenter.onDeleteButtonClicked(new Rooms(id, hotelId, Integer.parseInt(cost), Integer.parseInt(count), type)));
         binding.saveBtn.setOnClickListener(v ->

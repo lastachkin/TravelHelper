@@ -22,7 +22,7 @@ public class RetrofitClient {
             interceptor = new HttpLoggingInterceptor();
             interceptor.level(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();//"yyyy-MM-dd"
 
             instance = new Retrofit.Builder()
                     .baseUrl(Constants.baseUrl)

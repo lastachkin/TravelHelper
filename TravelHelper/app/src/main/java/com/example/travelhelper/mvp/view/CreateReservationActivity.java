@@ -48,7 +48,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Crea
         String cost = (String) bundle.get("Cost") + "$";
 
         presenter = new CreateReservationPresenter(this);
-        presenter.onScreenLoaded(hotelId, type);
+        presenter.onScreenLoaded(roomId);
         binding.type.setText(type);
         binding.cost.setText(cost);
         binding.startDate.setOnClickListener(v -> showDialog(1));

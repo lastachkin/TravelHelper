@@ -1,13 +1,10 @@
 package com.example.travelhelper.mvp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
-import com.example.travelhelper.R;
 import com.example.travelhelper.databinding.ActivityHotelDetailsBinding;
 import com.example.travelhelper.mvp.contract.HotelDetailsContract;
 import com.example.travelhelper.mvp.presenter.HotelDetailsPresenter;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -27,14 +24,14 @@ public class HotelDetailsActivity extends AppCompatActivity implements HotelDeta
         presenter = new HotelDetailsPresenter(this);
 
         Bundle bundle = getIntent().getExtras();
-        String id = (String) bundle.get("Id");
+        String hotelId = (String) bundle.get("Id");
         String title = (String) bundle.get("Title");
         String city = (String) bundle.get("City");
         String address = (String) bundle.get("Address");
         String addressToDisplay = city + ", " + address;
         String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisl nisl, tempor eu rutrum ut, vulputate in metus. Vestibulum vel tellus laoreet, accumsan dui vel, efficitur justo. Proin dictum elementum leo, vitae gravida sapien tincidunt ac.";
 
-        presenter.onScreenLoaded(title, city, address);
+        presenter.onScreenLoaded(hotelId);
         binding.title.setText(title);
         binding.address.setText(addressToDisplay);
         binding.description.setText(description);
@@ -42,7 +39,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements HotelDeta
 
         binding.reservBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, RoomSelectionActivity.class);
-            intent.putExtra("HotelId", id);
+            intent.putExtra("HotelId", hotelId);
             startActivity(intent);
         });
     }

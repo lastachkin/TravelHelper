@@ -32,10 +32,10 @@ public class HotelEditPresenter implements HotelEditContract.Presenter {
     }
 
     @Override
-    public void onScreenLoaded(String title, String city) {
+    public void onScreenLoaded(String hotelId) {
         try{
             final File localFile = File.createTempFile("tmp", "jpg");
-            FirebaseStorage.getInstance().getReference().child("hotels/"+ title + "_" + city).getFile(localFile)
+            FirebaseStorage.getInstance().getReference().child("hotels/"+ hotelId).getFile(localFile)
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         view.setHotelImageBitmap(bitmap);
@@ -52,7 +52,7 @@ public class HotelEditPresenter implements HotelEditContract.Presenter {
     @Override
     public void onSaveButtonClicked(Uri uri, Hotels hotel) {
         if(uri != null){
-            repository.uploadHotelPicture(uri, hotel.getTitle() + "_" + hotel.getCity())
+            repository.uploadHotelPicture(uri, hotel.getId())
                     .addOnSuccessListener(taskSnapshot -> Log.i(Constants.appLog, "Hotel image uploaded"))
                     .addOnFailureListener(e -> Log.e(Constants.appLog, e.getMessage()));
         }
@@ -74,7 +74,7 @@ public class HotelEditPresenter implements HotelEditContract.Presenter {
     public void onDeleteButtonClicked(Hotels hotel) {
         // TODO: 08.05.2021 Also delete all rooms and reservation by hotel id
         //Delete image from Firebase
-        FirebaseStorage.getInstance().getReference().child("hotels/"+ hotel.getTitle() + "_" + hotel.getCity()).delete()
+        FirebaseStorage.getInstance().getReference().child("hotels/"+ hotel.getId()).delete()
                 .addOnSuccessListener(taskSnapshot -> Log.i(Constants.appLog, "Hotel image deleted"))
                 .addOnFailureListener(e -> Log.e(Constants.appLog, e.getMessage()));
 

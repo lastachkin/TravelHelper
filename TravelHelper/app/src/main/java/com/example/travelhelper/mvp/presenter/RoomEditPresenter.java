@@ -32,11 +32,11 @@ public class RoomEditPresenter implements RoomEditContract.Presenter {
     }
 
     @Override
-    public void onScreenLoaded(String hotelId, String type) {
+    public void onScreenLoaded(String roomId) {
         // TODO: 12.05.2021 Move logic to repo
         try{
             final File localFile = File.createTempFile("tmp", "jpg");
-            FirebaseStorage.getInstance().getReference().child("rooms/"+ hotelId + "_" + type).getFile(localFile)
+            FirebaseStorage.getInstance().getReference().child("rooms/"+ roomId).getFile(localFile)
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         view.setRoomImageBitmap(bitmap);
@@ -53,7 +53,7 @@ public class RoomEditPresenter implements RoomEditContract.Presenter {
     @Override
     public void onDeleteButtonClicked(Rooms room) {
         //Delete image from Firebase
-        FirebaseStorage.getInstance().getReference().child("rooms/"+ room.getHotelId() + "_" + room.getType()).delete()
+        FirebaseStorage.getInstance().getReference().child("rooms/"+ room.getId()).delete()
                 .addOnSuccessListener(taskSnapshot -> Log.i(Constants.appLog, "Room image deleted"))
                 .addOnFailureListener(e -> Log.e(Constants.appLog, e.getMessage()));
 
@@ -75,7 +75,7 @@ public class RoomEditPresenter implements RoomEditContract.Presenter {
     @Override
     public void onSaveButtonClicked(Uri uri, Rooms room) {
         if(uri != null){
-            repository.uploadRoomPicture(uri, room.getHotelId() + "_" + room.getType())
+            repository.uploadRoomPicture(uri, room.getId())
                     .addOnSuccessListener(taskSnapshot -> Log.i(Constants.appLog, "Room image uploaded"))
                     .addOnFailureListener(e -> Log.e(Constants.appLog, e.getMessage()));
         }

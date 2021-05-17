@@ -25,7 +25,7 @@ public class CreateRoomPresenter implements CreateRoomContract.Presenter {
 
     @Override
     public void onCreateButtonClicked(Uri uri, Rooms room) {
-        repository.uploadRoomPicture(uri, room.getHotelId() + "_" + room.getType())
+        repository.uploadRoomPicture(uri, room.getId())
                 .addOnSuccessListener(taskSnapshot -> Log.i(Constants.appLog, "Room image uploaded"))
                 .addOnFailureListener(e -> Log.e(Constants.appLog, e.getMessage()));
 

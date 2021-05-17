@@ -3,7 +3,6 @@ package com.example.travelhelper.mvp.contract;
 import android.graphics.Bitmap;
 
 import com.example.travelhelper.mvp.repository.model.Reservations;
-import com.example.travelhelper.mvp.repository.model.Rooms;
 
 public interface CreateReservationContract {
     interface View{
@@ -13,7 +12,7 @@ public interface CreateReservationContract {
         void setRoomImageId(int id);
     }
     interface Presenter {
-        void onScreenLoaded(String hotelId, String type);
+        void onScreenLoaded(String roomId);
         void onReserveButtonClicked(Reservations reservation);
     }
 }

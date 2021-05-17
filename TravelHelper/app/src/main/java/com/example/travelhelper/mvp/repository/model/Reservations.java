@@ -1,13 +1,21 @@
 package com.example.travelhelper.mvp.repository.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Reservations {
+    @SerializedName("id")
     public String Id;
+    @SerializedName("userId")
     public String UserId;
+    @SerializedName("roomId")
     public String RoomId;
+    @SerializedName("status")
     public String Status;
+    @SerializedName("startDate")
     public Date StartDate;
+    @SerializedName("endDate")
     public Date EndDate;
 
     public Reservations(String id, String userId, String roomId, String status, Date startDate, Date endDate) {

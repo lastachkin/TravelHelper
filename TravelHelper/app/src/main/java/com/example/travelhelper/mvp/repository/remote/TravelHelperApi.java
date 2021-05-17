@@ -2,6 +2,7 @@ package com.example.travelhelper.mvp.repository.remote;
 
 import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.repository.model.Reservations;
+import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
 import com.example.travelhelper.mvp.repository.model.Rooms;
 import com.example.travelhelper.mvp.repository.model.Users;
 
@@ -26,6 +27,8 @@ public interface TravelHelperApi {
     Call<List<Hotels>> getHotelList();
     @GET("api/room/{id}")
     Call<List<Rooms>> getRoomList(@Path("id") String hotelId);
+    @GET("api/reservation/{userId}")
+    Call<List<Reservations>> getReservationList(@Path("userId") String userId);
 
     @POST("api/user")
     Observable<String> createUser(@Body Users user);

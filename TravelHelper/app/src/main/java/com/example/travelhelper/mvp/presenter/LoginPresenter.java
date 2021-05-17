@@ -42,8 +42,8 @@ public class LoginPresenter implements LoginContract.Presenter {
                         Constants.currentUser = gson.fromJson(s, Users.class);
                     }
                         view.onUserFound();
-                }, throwable -> {
-                    Log.e(Constants.appLog, throwable.getMessage());
-                }));
+                }, throwable ->
+                    Log.e(Constants.appLog, throwable.getMessage()))
+        );
     }
 }

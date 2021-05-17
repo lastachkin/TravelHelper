@@ -15,7 +15,7 @@ public interface HotelEditContract {
         void setHotelImageId(int id);
     }
     interface Presenter {
-        void onScreenLoaded(String title, String city);
+        void onScreenLoaded(String hotelId);
         void onSaveButtonClicked(Uri uri, Hotels hotel);
         void onDeleteButtonClicked(Hotels hotel);
     }
