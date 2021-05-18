@@ -18,9 +18,7 @@ import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.view.HotelDetailsActivity;
 import com.example.travelhelper.mvp.view.HotelEditActivity;
 import com.example.travelhelper.utils.Constants;
-import com.example.travelhelper.utils.Extensions;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;

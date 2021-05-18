@@ -21,6 +21,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface TravelHelperApi {
+    // TODO: 18.05.2021 Migrate to rxjava
     @GET("api/user")
     Observable<String> searchUser(@Query("login") String login, @Query("password") String password);
     @GET("api/hotel/")

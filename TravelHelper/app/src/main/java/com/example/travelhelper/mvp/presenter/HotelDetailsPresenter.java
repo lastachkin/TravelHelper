@@ -70,7 +70,7 @@ public class HotelDetailsPresenter implements HotelDetailsContract.Presenter {
 
     @Override
     public void onFavoriteButtonClicked(Favorites favorite) {
-        // TODO: 18.05.2021 Replace by flatmap 
+        // TODO: 18.05.2021 Replace by flatmap
         mDisposable.add(repository.searchFavorite(favorite.getUserId(), favorite.getHotelId())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
