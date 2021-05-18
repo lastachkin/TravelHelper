@@ -3,6 +3,7 @@ package com.example.travelhelper.mvp.repository;
 import android.net.Uri;
 
 import com.example.travelhelper.App;
+import com.example.travelhelper.mvp.repository.model.Favorites;
 import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.repository.model.Reservations;
 import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
@@ -43,6 +44,10 @@ public class Repository {
         return App.getInstance().getApi().createReservation(reservation);
     }
 
+    public Observable<String> addFavorite(Favorites favorite){
+        return App.getInstance().getApi().addFavorite(favorite);
+    }
+
     public Observable<String> searchUser(String login, String password){
         return App.getInstance().getApi().searchUser(login, password);
     }
@@ -51,8 +56,16 @@ public class Repository {
         return App.getInstance().getApi().searchHotel(title, city);
     }
 
+    public Observable<String> searchFavorite(String userId, String hotelId){
+        return App.getInstance().getApi().searchFavorite(userId, hotelId);
+    }
+
     public Call<List<Hotels>> getHotelList(){
         return App.getInstance().getApi().getHotelList();
+    }
+
+    public Call<List<Hotels>> getFavoritesByUser(String userId){
+        return App.getInstance().getApi().getFavoritesByUser(userId);
     }
 
     public Call<List<Rooms>> getRoomList(String hotelId){
@@ -77,6 +90,10 @@ public class Repository {
 
     public Call<String> deleteReservation(String id){
         return App.getInstance().getApi().deleteReservation(id);
+    }
+
+    public Observable<String> removeFavorite(String userId, String hotelId){
+        return App.getInstance().getApi().deleteFavorite(userId, hotelId);
     }
 
     public Call<String> updateHotel(String id, Hotels hotel){

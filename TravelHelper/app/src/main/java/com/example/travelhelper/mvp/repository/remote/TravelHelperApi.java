@@ -37,6 +37,8 @@ public interface TravelHelperApi {
     Call<UsersResponse> getUserById(@Path("id") String id);
     @GET("api/favorite/{userId}")
     Call<List<Hotels>> getFavoritesByUser(@Path("userId") String userId);
+    @GET("api/favorite/")
+    Observable<String> searchFavorite(@Query("userId") String userId, @Query("hotelId") String hotelId);
 
     @POST("api/user")
     Observable<String> createUser(@Body Users user);
@@ -63,5 +65,5 @@ public interface TravelHelperApi {
     @DELETE("api/reservation/{id}")
     Call<String> deleteReservation(@Path("id") String id);
     @DELETE("api/favorite")
-    Call<String> deleteFavorite(@Query("userId") String userId, @Query("hotelId") String hotelId);
+    Observable<String> deleteFavorite(@Query("userId") String userId, @Query("hotelId") String hotelId);
 }
