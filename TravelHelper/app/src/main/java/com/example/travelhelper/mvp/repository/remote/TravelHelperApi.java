@@ -5,6 +5,7 @@ import com.example.travelhelper.mvp.repository.model.Reservations;
 import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
 import com.example.travelhelper.mvp.repository.model.Rooms;
 import com.example.travelhelper.mvp.repository.model.Users;
+import com.example.travelhelper.mvp.repository.model.UsersResponse;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public interface TravelHelperApi {
     @GET("api/reservationdetails")
     Call<ReservationsResponse> getReservationDetails(@Query("roomId") String roomId);
     @GET("api/user/{id}")
-    Call<Users> getUserById(@Path("id") String id);
+    Call<UsersResponse> getUserById(@Path("id") String id);
 
     @POST("api/user")
     Observable<String> createUser(@Body Users user);
@@ -47,6 +48,8 @@ public interface TravelHelperApi {
     Call<String> updateHotel(@Path("id") String id, @Body Hotels hotel);
     @PUT("api/room/{id}")
     Call<String> updateRoom(@Path("id") String id, @Body Rooms room);
+    @PUT("api/user/{id}")
+    Call<String> updateUser(@Path("id") String id, @Body Users user);
 
     @DELETE("api/hotel/{id}")
     Call<String> deleteHotel(@Path("id") String id);

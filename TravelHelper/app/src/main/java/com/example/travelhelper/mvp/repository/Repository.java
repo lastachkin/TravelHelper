@@ -8,6 +8,7 @@ import com.example.travelhelper.mvp.repository.model.Reservations;
 import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
 import com.example.travelhelper.mvp.repository.model.Rooms;
 import com.example.travelhelper.mvp.repository.model.Users;
+import com.example.travelhelper.mvp.repository.model.UsersResponse;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -62,7 +63,7 @@ public class Repository {
         return App.getInstance().getApi().getReservationDetails(roomId);
     }
 
-    public Call<Users> getUserById(String id){
+    public Call<UsersResponse> getUserById(String id){
         return App.getInstance().getApi().getUserById(id);
     }
 
@@ -84,6 +85,10 @@ public class Repository {
 
     public Call<String> updateRoom(String id, Rooms room){
         return App.getInstance().getApi().updateRoom(id, room);
+    }
+
+    public Call<String> updateUser(String id, Users user){
+        return App.getInstance().getApi().updateUser(id, user);
     }
 
     public UploadTask uploadHotelPicture(Uri uri, String title){

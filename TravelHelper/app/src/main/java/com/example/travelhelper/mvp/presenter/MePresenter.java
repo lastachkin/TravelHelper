@@ -2,64 +2,70 @@ package com.example.travelhelper.mvp.presenter;
 
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
 import com.example.travelhelper.mvp.contract.MeContract;
 import com.example.travelhelper.mvp.repository.Repository;
-import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
 import com.example.travelhelper.mvp.repository.model.Users;
+import com.example.travelhelper.mvp.repository.model.UsersResponse;
 import com.example.travelhelper.utils.Constants;
 
-import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
 public class MePresenter implements MeContract.Presenter {
-    @Nullable
     private final MeContract.View view;
     private final Repository repository;
-    private final CompositeDisposable mDisposable = new CompositeDisposable();
 
-    public MePresenter(@Nullable MeContract.View view){
+    public MePresenter(MeContract.View view){
         this.view = view;
         repository = new Repository();
     }
 
     @Override
     public void onEditButtonClicked() {
-        if (view != null) {
-            if(view.isFieldsEnabled())
-                view.setFieldsDisabled();
-            else
-                view.setFieldsEnabled();
-        }
+        if(view.isFieldsEnabled())
+            view.setFieldsDisabled();
+        else
+            view.setFieldsEnabled();
     }
 
     @Override
-    public void onSaveButtonClicked(String password) {
-        //update in db
-//        mDisposable.add(repository.updateUser(new User(Constants.currentUser.Firstname, Constants.currentUser.Lastname, Constants.currentUser.Email, Constants.currentUser.Phone, Constants.currentUser.Login, password))
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(view::onUserUpdated,
-//                        throwable -> Log.e(Constants.appLog, throwable.getMessage())));
-        //onScreenLoaded();
-
+    public void onSaveButtonClicked(Users user) {
+        if(user.getFirstname().isEmpty() || user.getLastname().isEmpty() || user.getPhone().isEmpty() || user.getEmail().isEmpty() || user.getPassword().isEmpty())
+            view.onFieldsIsEmpty();
+        else
+            repository.updateUser(user.getId(), user).enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if (response.body() != null && response.body().contains("User updated")) {
+                        view.onUserUpdated();
+                        view.setFieldsDisabled();
+                        onScreenLoaded();
+                    }
+                }
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    Log.e(Constants.appLog, t.getMessage());
+                }
+            });
     }
 
     @Override
     public void onScreenLoaded() {
-        repository.getUserById(Constants.currentUser.getId()).enqueue(new Callback<Users>() {
+        repository.getUserById(Constants.currentUser.getId()).enqueue(new Callback<UsersResponse>() {
             @Override
-            public void onResponse(Call<Users> call, Response<Users> response) {
+            public void onResponse(Call<UsersResponse> call, Response<UsersResponse> response) {
                 if (response.body() != null){
+                    view.setFirstName(response.body().getFirstname());
+                    Log.i(Constants.appLog, response.body().toString());
+                    view.setLastName(response.body().getLastname());
+                    view.setPhone(response.body().getPhone());
                     view.setEmail(response.body().getEmail());
                 }
             }
             @Override
-            public void onFailure(Call<Users> call, Throwable t) {
+            public void onFailure(Call<UsersResponse> call, Throwable t) {
                 Log.e(Constants.appLog, t.getMessage());
             }
         });

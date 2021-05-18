@@ -2,7 +2,6 @@ package com.example.travelhelper.mvp.presenter;
 
 import android.util.Log;
 
-import com.example.travelhelper.App;
 import com.example.travelhelper.mvp.contract.LoginContract;
 import com.example.travelhelper.mvp.repository.Repository;
 import com.example.travelhelper.mvp.repository.model.Users;

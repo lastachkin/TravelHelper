@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import com.example.travelhelper.databinding.FragmentMeBinding;
 import com.example.travelhelper.mvp.contract.MeContract;
 import com.example.travelhelper.mvp.presenter.MePresenter;
+import com.example.travelhelper.mvp.repository.model.Users;
+import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
 
 import org.jetbrains.annotations.Nullable;
@@ -25,7 +27,15 @@ public class MeFragment extends Fragment implements MeContract.View {
         presenter = new MePresenter(this);
         presenter.onScreenLoaded();
         binding.editBtn.setOnClickListener(view -> presenter.onEditButtonClicked());
-        binding.saveBtn.setOnClickListener(view -> presenter.onSaveButtonClicked(binding.password.getText().toString()));//put others fields
+        binding.saveBtn.setOnClickListener(view -> presenter.onSaveButtonClicked(
+                new Users(Constants.currentUser.getId(),
+                        binding.firstName.getText().toString(),
+                        binding.lastName.getText().toString(),
+                        binding.phone.getText().toString(),
+                        binding.email.getText().toString(),
+                        Constants.currentUser.getLogin(),
+                        binding.password.getText().toString(),
+                        "U")));
         return binding.getRoot();
     }
 
@@ -58,6 +68,11 @@ public class MeFragment extends Fragment implements MeContract.View {
     @Override
     public void onUserUpdated() {
         Extensions.successToast("Обновлено");
+    }
+
+    @Override
+    public void onFieldsIsEmpty() {
+        Extensions.errorToast("Заполните поля");
     }
 
     @Override
