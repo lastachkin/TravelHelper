@@ -1,5 +1,6 @@
 package com.example.travelhelper.mvp.repository.remote;
 
+import com.example.travelhelper.mvp.repository.model.Favorites;
 import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.repository.model.Reservations;
 import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
@@ -34,6 +35,8 @@ public interface TravelHelperApi {
     Call<ReservationsResponse> getReservationDetails(@Query("roomId") String roomId);
     @GET("api/user/{id}")
     Call<UsersResponse> getUserById(@Path("id") String id);
+    @GET("api/favorite/{userId}")
+    Call<List<Hotels>> getFavoritesByUser(@Path("userId") String userId);
 
     @POST("api/user")
     Observable<String> createUser(@Body Users user);
@@ -43,6 +46,8 @@ public interface TravelHelperApi {
     Observable<String> createRoom(@Body Rooms room);
     @POST("api/reservation")
     Observable<String> createReservation(@Body Reservations reservation);
+    @POST("api/favorite")
+    Observable<String> addFavorite(@Body Favorites favorite);
 
     @PUT("api/hotel/{id}")
     Call<String> updateHotel(@Path("id") String id, @Body Hotels hotel);
@@ -57,4 +62,6 @@ public interface TravelHelperApi {
     Call<String> deleteRoom(@Path("id") String id);
     @DELETE("api/reservation/{id}")
     Call<String> deleteReservation(@Path("id") String id);
+    @DELETE("api/favorite")
+    Call<String> deleteFavorite(@Query("userId") String userId, @Query("hotelId") String hotelId);
 }
