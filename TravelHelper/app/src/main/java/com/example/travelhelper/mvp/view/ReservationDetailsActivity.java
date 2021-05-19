@@ -27,6 +27,7 @@ public class ReservationDetailsActivity extends AppCompatActivity implements Res
         super.onCreate(savedInstanceState);
         binding = ActivityReservationDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         Bundle bundle = getIntent().getExtras();
         String reservationId = (String) bundle.get("Id");
         String roomId = (String) bundle.get("RoomId");

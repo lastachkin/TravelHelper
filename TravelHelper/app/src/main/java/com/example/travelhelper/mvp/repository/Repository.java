@@ -5,6 +5,8 @@ import android.net.Uri;
 import com.example.travelhelper.App;
 import com.example.travelhelper.mvp.repository.model.Favorites;
 import com.example.travelhelper.mvp.repository.model.Hotels;
+import com.example.travelhelper.mvp.repository.model.ManagerResponse;
+import com.example.travelhelper.mvp.repository.model.Managers;
 import com.example.travelhelper.mvp.repository.model.Reservations;
 import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
 import com.example.travelhelper.mvp.repository.model.Rooms;
@@ -48,6 +50,10 @@ public class Repository {
         return App.getInstance().getApi().addFavorite(favorite);
     }
 
+    public Observable<String> createManager(Managers manager){
+        return App.getInstance().getApi().createManager(manager);
+    }
+
     public Observable<String> searchUser(String login, String password){
         return App.getInstance().getApi().searchUser(login, password);
     }
@@ -70,6 +76,10 @@ public class Repository {
 
     public Call<List<Rooms>> getRoomList(String hotelId){
         return App.getInstance().getApi().getRoomList(hotelId);
+    }
+
+    public Observable<ManagerResponse> getDetailsForManager(String reservationId){
+        return App.getInstance().getApi().getDetailsForManager(reservationId);
     }
 
     public Call<ReservationsResponse> getReservationDetails(String roomId){

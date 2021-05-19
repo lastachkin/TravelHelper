@@ -39,7 +39,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                     
                     Gson gson = new Gson();
                     Constants.currentUser = gson.fromJson(s, Users.class);
-                        view.onUserFound();
+                    view.onUserFound(Constants.currentUser.getRole());
                 }, throwable ->
                     Log.e(Constants.appLog, throwable.getMessage()))
         );

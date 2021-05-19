@@ -28,11 +28,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void onUserFound() {
-        // TODO: 4/21/2021 implement logic to define admin 
-        if(binding.login.getText().toString().equals("admin")){
+    public void onUserFound(String role) {
+        if(role.contains("A")){
             Constants.isAdmin = true;
             startActivity(new Intent(this, AdminActivity.class));
+        }
+        else if(role.contains("M")){
+            Constants.isAdmin = false;
+            startActivity(new Intent(this, ManagerActivity.class));
         }
         else{
             Constants.isAdmin = false;

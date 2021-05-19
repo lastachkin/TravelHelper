@@ -2,6 +2,8 @@ package com.example.travelhelper.mvp.repository.remote;
 
 import com.example.travelhelper.mvp.repository.model.Favorites;
 import com.example.travelhelper.mvp.repository.model.Hotels;
+import com.example.travelhelper.mvp.repository.model.Managers;
+import com.example.travelhelper.mvp.repository.model.ManagerResponse;
 import com.example.travelhelper.mvp.repository.model.Reservations;
 import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
 import com.example.travelhelper.mvp.repository.model.Rooms;
@@ -40,6 +42,16 @@ public interface TravelHelperApi {
     Call<List<Hotels>> getFavoritesByUser(@Path("userId") String userId);
     @GET("api/favorite/")
     Observable<String> searchFavorite(@Query("userId") String userId, @Query("hotelId") String hotelId);
+    @GET("api/city/")
+    Call<List<String>> getCityList();
+    @GET("api/hotel/{city}")
+    Call<List<Hotels>> getHotelsByFilters(@Path("city")String city, @Query("pattern")String pattern);
+    @GET("api/helper/{hotelId}")
+    Call<List<Reservations>> getReservationsByHotel(@Path("hotelId")String hotelId);
+    @GET("api/manager/{userId}")
+    Observable<String> getHotelByManagerId(@Path("userId")String userId);
+    @GET("api/managerExtension/{reservationId}")
+    Observable<ManagerResponse> getDetailsForManager(@Path("reservationId")String reservationId);
 
     @POST("api/user")
     Observable<String> createUser(@Body Users user);
@@ -51,6 +63,8 @@ public interface TravelHelperApi {
     Observable<String> createReservation(@Body Reservations reservation);
     @POST("api/favorite")
     Observable<String> addFavorite(@Body Favorites favorite);
+    @POST("api/manager")
+    Observable<String> createManager(@Body Managers manager);
 
     @PUT("api/hotel/{id}")
     Call<String> updateHotel(@Path("id") String id, @Body Hotels hotel);

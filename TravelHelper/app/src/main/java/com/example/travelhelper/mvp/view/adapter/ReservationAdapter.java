@@ -18,6 +18,7 @@ import com.example.travelhelper.R;
 import com.example.travelhelper.mvp.repository.model.Hotels;
 import com.example.travelhelper.mvp.repository.model.Reservations;
 import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
+import com.example.travelhelper.mvp.view.ManagerDetailsActivity;
 import com.example.travelhelper.mvp.view.ReservationDetailsActivity;
 import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
@@ -55,6 +56,8 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         holder.hotelImageView.setImageBitmap(bitmap);
+                        if(Constants.currentUser.getRole().contains("M"))
+                            holder.hotelImageView.setImageResource(R.drawable.camera_lens);
                     })
                     .addOnFailureListener(e -> {
                         Log.e(Constants.appLog, e.getMessage());
@@ -87,17 +90,17 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         @Override
         public void onClick(View v) {
             Intent intent;
-            //if(!Constants.isAdmin)
+            if(Constants.currentUser.getRole().contains("U"))
                 intent = new Intent(v.getContext(), ReservationDetailsActivity.class);
-            ///else
-                //intent = new Intent(v.getContext(), RoomEditActivity.class);
+            else
+                intent = new Intent(v.getContext(), ManagerDetailsActivity.class);
 
             intent.putExtra("Id", reservations.get(getLayoutPosition()).getId());
             intent.putExtra("RoomId", reservations.get(getLayoutPosition()).getRoomId());
             intent.putExtra("UserId", reservations.get(getLayoutPosition()).getUserId());
             intent.putExtra("Status", reservations.get(getLayoutPosition()).getStatus());
-            intent.putExtra("StartDate", String.valueOf(reservations.get(getLayoutPosition()).getStartDate()));
-            intent.putExtra("EndDate", String.valueOf(reservations.get(getLayoutPosition()).getEndDate()));
+            intent.putExtra("StartDate", reservations.get(getLayoutPosition()).getStartDate().getDate() + "." + (reservations.get(getLayoutPosition()).getStartDate().getMonth() + 1) + "." + (reservations.get(getLayoutPosition()).getStartDate().getYear() + 1900));
+            intent.putExtra("EndDate", reservations.get(getLayoutPosition()).getEndDate().getDate() + "." + (reservations.get(getLayoutPosition()).getEndDate().getMonth() + 1) + "." + (reservations.get(getLayoutPosition()).getEndDate().getYear() + 1900));
             v.getContext().startActivity(intent);
         }
     }
