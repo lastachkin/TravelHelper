@@ -57,5 +57,6 @@ public class AdminActivity extends AppCompatActivity{
         binding.hotelList.setAdapter(adapter);
 
         binding.createHotelBtn.setOnClickListener(view -> startActivity(new Intent(this, CreateHotelActivity.class)));
+        binding.logout.setOnClickListener(v -> startActivity(new Intent(this, LoginActivity.class)));
     }
 }

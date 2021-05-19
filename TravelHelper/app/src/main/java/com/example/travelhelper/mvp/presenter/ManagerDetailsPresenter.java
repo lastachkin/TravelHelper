@@ -30,7 +30,7 @@ public class ManagerDetailsPresenter implements ManagerDetailsContract.Presenter
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
-                    view.setCost(response.getCost());
+                    view.setCost(response.getCost() + "$");
                     view.setName(response.getName());
                     view.setType(response.getType());
                 }, throwable -> Log.e(Constants.appLog, throwable.getMessage())));

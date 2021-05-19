@@ -1,5 +1,6 @@
 package com.example.travelhelper.mvp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ public class MeFragment extends Fragment implements MeContract.View {
         binding = FragmentMeBinding.inflate(getLayoutInflater());
         presenter = new MePresenter(this);
         presenter.onScreenLoaded();
+        binding.logout.setOnClickListener(v -> startActivity(new Intent(v.getContext(), LoginActivity.class)));
         binding.editBtn.setOnClickListener(view -> presenter.onEditButtonClicked());
         binding.saveBtn.setOnClickListener(view -> presenter.onSaveButtonClicked(
                 new Users(Constants.currentUser.getId(),

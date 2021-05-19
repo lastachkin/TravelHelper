@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg">
+    android:background="@color/coral">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/userImage"
@@ -163,5 +163,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_btn" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginEnd="5dp"
+        android:clickable="true"
+        android:foregroundGravity="right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logout" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
