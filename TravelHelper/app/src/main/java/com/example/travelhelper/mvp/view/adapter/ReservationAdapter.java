@@ -20,6 +20,7 @@ import com.example.travelhelper.mvp.repository.model.Reservations;
 import com.example.travelhelper.mvp.repository.model.ReservationsResponse;
 import com.example.travelhelper.mvp.view.ManagerDetailsActivity;
 import com.example.travelhelper.mvp.view.ReservationDetailsActivity;
+import com.example.travelhelper.mvp.view.ReservationOverviewActivity;
 import com.example.travelhelper.utils.Constants;
 import com.example.travelhelper.utils.Extensions;
 import com.google.firebase.storage.FirebaseStorage;
@@ -92,8 +93,10 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             Intent intent;
             if(Constants.currentUser.getRole().contains("U"))
                 intent = new Intent(v.getContext(), ReservationDetailsActivity.class);
-            else
+            else if(reservations.get(getLayoutPosition()).getStatus().equals("O"))
                 intent = new Intent(v.getContext(), ManagerDetailsActivity.class);
+            else
+                intent = new Intent(v.getContext(), ReservationOverviewActivity.class);
 
             intent.putExtra("Id", reservations.get(getLayoutPosition()).getId());
             intent.putExtra("RoomId", reservations.get(getLayoutPosition()).getRoomId());
@@ -101,6 +104,12 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             intent.putExtra("Status", reservations.get(getLayoutPosition()).getStatus());
             intent.putExtra("StartDate", reservations.get(getLayoutPosition()).getStartDate().getDate() + "." + (reservations.get(getLayoutPosition()).getStartDate().getMonth() + 1) + "." + (reservations.get(getLayoutPosition()).getStartDate().getYear() + 1900));
             intent.putExtra("EndDate", reservations.get(getLayoutPosition()).getEndDate().getDate() + "." + (reservations.get(getLayoutPosition()).getEndDate().getMonth() + 1) + "." + (reservations.get(getLayoutPosition()).getEndDate().getYear() + 1900));
+            intent.putExtra("StartDate_Year", (reservations.get(getLayoutPosition()).getStartDate().getYear() + 1900));
+            intent.putExtra("StartDate_Month", (reservations.get(getLayoutPosition()).getStartDate().getMonth() + 1));
+            intent.putExtra("StartDate_Day", reservations.get(getLayoutPosition()).getStartDate().getDate());
+            intent.putExtra("EndDate_Year", (reservations.get(getLayoutPosition()).getEndDate().getYear() + 1900));
+            intent.putExtra("EndDate_Month", (reservations.get(getLayoutPosition()).getEndDate().getMonth() + 1));
+            intent.putExtra("EndDate_Day", reservations.get(getLayoutPosition()).getEndDate().getDate());
             v.getContext().startActivity(intent);
         }
     }

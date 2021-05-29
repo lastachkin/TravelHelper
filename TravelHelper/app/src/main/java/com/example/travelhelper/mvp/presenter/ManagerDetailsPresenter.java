@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.travelhelper.mvp.contract.ManagerDetailsContract;
 import com.example.travelhelper.mvp.repository.Repository;
+import com.example.travelhelper.mvp.repository.model.Reservations;
 import com.example.travelhelper.utils.Constants;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -37,17 +38,33 @@ public class ManagerDetailsPresenter implements ManagerDetailsContract.Presenter
     }
 
     @Override
-    public void onRemoveButtonClicked(String reservationId) {
-        repository.deleteReservation(reservationId).enqueue(new Callback<String>() {
+    public void onConfirmButtonClicked(String reservationId, Reservations reservation) {
+        repository.updateReservation(reservationId, reservation).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.i(Constants.appLog, response.body());
-                view.onDeleteSuccess();
+                view.onConfirmSuccess();
             }
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Log.e(Constants.appLog, t.getMessage());
-                view.onDeleteFailed();
+                view.onConfirmFailed();
+            }
+        });
+    }
+
+    @Override
+    public void onRejectButtonClicked(String reservationId, Reservations reservation) {
+        repository.updateReservation(reservationId, reservation).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.i(Constants.appLog, response.body());
+                view.onRejectSuccess();
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.e(Constants.appLog, t.getMessage());
+                view.onRejectFailed();
             }
         });
     }

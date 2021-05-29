@@ -9,11 +9,14 @@ public class ManagerResponse {
     public String Type;
     @SerializedName("cost")
     public String Cost;
+    @SerializedName("comment")
+    public String Comment;
 
-    public ManagerResponse(String name, String type, String cost) {
+    public ManagerResponse(String name, String type, String cost, String comment) {
         Name = name;
         Type = type;
         Cost = cost;
+        Comment = comment;
     }
 
     public String getName() {
@@ -26,5 +29,9 @@ public class ManagerResponse {
 
     public String getCost() {
         return Cost;
+    }
+
+    public String getComment() {
+        return Comment;
     }
 }

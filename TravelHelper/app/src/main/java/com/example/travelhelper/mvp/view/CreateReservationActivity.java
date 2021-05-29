@@ -60,7 +60,8 @@ public class CreateReservationActivity extends AppCompatActivity implements Crea
                         roomId,
                         "O",
                         getDate(startDateYear + "-" + startDateMonth + "-" + startDateDay),
-                        getDate(endDateYear + "-" + endDateMonth + "-" + endDateDay)));
+                        getDate(endDateYear + "-" + endDateMonth + "-" + endDateDay),
+                        ""));
             else
                 Extensions.errorToast("Введите данные");
             }

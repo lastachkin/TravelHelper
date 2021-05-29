@@ -17,14 +17,17 @@ public class Reservations {
     public Date StartDate;
     @SerializedName("endDate")
     public Date EndDate;
+    @SerializedName("comment")
+    public String Comment;
 
-    public Reservations(String id, String userId, String roomId, String status, Date startDate, Date endDate) {
+    public Reservations(String id, String userId, String roomId, String status, Date startDate, Date endDate, String comment) {
         Id = id;
         UserId = userId;
         RoomId = roomId;
         Status = status;
         StartDate = startDate;
         EndDate = endDate;
+        Comment = comment;
     }
 
     public String getId() {
@@ -49,5 +52,9 @@ public class Reservations {
 
     public Date getEndDate() {
         return EndDate;
+    }
+
+    public String getComment() {
+        return Comment;
     }
 }

@@ -118,6 +118,10 @@ public class Repository {
         return App.getInstance().getApi().updateUser(id, user);
     }
 
+    public Call<String> updateReservation(String id, Reservations reservation){
+        return App.getInstance().getApi().updateReservation(id, reservation);
+    }
+
     public UploadTask uploadHotelPicture(Uri uri, String title){
         StorageReference imageRef = firebaseStorageRef.child("hotels/" + title);
         return imageRef.putFile(uri);
