@@ -13,6 +13,7 @@ import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -58,7 +59,19 @@ public class CreateReservationPresenter implements CreateReservationContract.Pre
                         view.onReserveFailed();
                     else
                         view.onReserveSuccess();
-                }, throwable -> Log.e(Constants.appLog, throwable.getMessage()))
-        );
+                }, throwable -> Log.e(Constants.appLog, throwable.getMessage())));
+    }
+
+    @Override
+    public void onCheckButtonClicked(Reservations reservation) {
+        mDisposable.add(repository.checkReservationByDates(reservation)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+                    if(s.contains("Ok"))
+                        view.onCheckPassed();
+                    else if(s.contains("Too much reservations"))
+                        view.onCheckFailed();
+                }, throwable -> Log.e(Constants.appLog, throwable.getMessage())));
     }
 }

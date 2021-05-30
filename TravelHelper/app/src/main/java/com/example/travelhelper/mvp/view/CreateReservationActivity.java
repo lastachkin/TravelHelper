@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.DatePicker;
 
 import com.example.travelhelper.databinding.ActivityCreateReservationBinding;
@@ -45,7 +46,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Crea
         String roomId = (String) bundle.get("Id");
         String hotelId = (String) bundle.get("HotelId");
         String type = (String) bundle.get("Type");
-        String cost = (String) bundle.get("Cost") + "$";
+        String cost = (String) bundle.get("Cost") + "$ per night";
 
         presenter = new CreateReservationPresenter(this);
         presenter.onScreenLoaded(roomId);
@@ -66,6 +67,19 @@ public class CreateReservationActivity extends AppCompatActivity implements Crea
                 Extensions.errorToast("Введите данные");
             }
         );
+
+        binding.checkDatesBtn.setOnClickListener(v -> {
+            if((binding.startDate.getText().length() != 0 && binding.endDate.getText().length() != 0) && getDate(endDateYear + "-" + endDateMonth + "-" + endDateDay).after(getDate(startDateYear + "-" + startDateMonth + "-" + startDateDay)))
+                presenter.onCheckButtonClicked(new Reservations(UUID.randomUUID().toString(),
+                        Constants.currentUser.getId(),
+                        roomId,
+                        "",
+                        getDate(startDateYear + "-" + startDateMonth + "-" + startDateDay),
+                        getDate(endDateYear + "-" + endDateMonth + "-" + endDateDay),
+                        ""));
+            else
+                Extensions.errorToast("Введите корректные данные");
+        });
     }
 
     // TODO: 16.05.2021 Deprecated. Replace by using DialogFragments
@@ -81,7 +95,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Crea
     DatePickerDialog.OnDateSetListener startDateCallBack = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             startDateYear = year;
-            startDateMonth = monthOfYear;
+            startDateMonth = monthOfYear + 1;
             startDateDay = dayOfMonth;
             binding.startDate.setText(startDateDay + "." + startDateMonth + "." + startDateYear);
         }
@@ -90,7 +104,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Crea
     DatePickerDialog.OnDateSetListener endDateCallBack = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             endDateYear = year;
-            endDateMonth = monthOfYear;
+            endDateMonth = monthOfYear + 1;
             endDateDay = dayOfMonth;
             binding.endDate.setText(endDateDay + "." + endDateMonth + "." + endDateYear);
         }
@@ -125,4 +139,17 @@ public class CreateReservationActivity extends AppCompatActivity implements Crea
     public void setRoomImageId(int id) {
         binding.roomImage.setImageResource(id);
     }
+
+    @Override
+    public void onCheckPassed() {
+        binding.reservBtn.setVisibility(View.VISIBLE);
+        Extensions.successBottomToast("Выбранные даты доступны к бронированию.");
+    }
+
+    @Override
+    public void onCheckFailed() {
+        binding.reservBtn.setVisibility(View.INVISIBLE);
+        Extensions.infoBottomToast("К сожалению, на выбранные даты нет мест.");
+    }
+
 }

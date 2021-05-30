@@ -16,10 +16,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Date;
 import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.Call;
+import retrofit2.http.Query;
 
 public class Repository {
     FirebaseStorage firebaseStorage;
@@ -28,6 +30,10 @@ public class Repository {
     public Repository() {
         firebaseStorage = FirebaseStorage.getInstance();
         firebaseStorageRef = firebaseStorage.getReference();
+    }
+
+    public Observable<String> checkReservationByDates(Reservations reservation){//String roomId, Date startDate, Date endDate
+        return App.getInstance().getApi().checkReservationByDates(reservation);
     }
 
     public Observable<String> createUser(Users user){

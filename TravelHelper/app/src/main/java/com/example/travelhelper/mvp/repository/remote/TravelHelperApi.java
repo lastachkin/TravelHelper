@@ -10,6 +10,7 @@ import com.example.travelhelper.mvp.repository.model.Rooms;
 import com.example.travelhelper.mvp.repository.model.Users;
 import com.example.travelhelper.mvp.repository.model.UsersResponse;
 
+import java.util.Date;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -65,6 +66,8 @@ public interface TravelHelperApi {
     Observable<String> addFavorite(@Body Favorites favorite);
     @POST("api/manager")
     Observable<String> createManager(@Body Managers manager);
+    @POST("api/reservationsByDates")
+    Observable<String> checkReservationByDates(@Body Reservations reservation);
 
     @PUT("api/hotel/{id}")
     Call<String> updateHotel(@Path("id") String id, @Body Hotels hotel);
