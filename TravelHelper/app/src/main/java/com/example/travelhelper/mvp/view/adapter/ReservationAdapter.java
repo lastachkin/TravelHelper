@@ -57,8 +57,12 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         holder.hotelImageView.setImageBitmap(bitmap);
-                        if(Constants.currentUser.getRole().contains("M"))
-                            holder.hotelImageView.setImageResource(R.drawable.camera_lens);
+                        if(Constants.currentUser.getRole().contains("M")){
+                            if(reservation.getStatus().equals("A"))
+                                holder.hotelImageView.setImageResource(R.drawable.p);
+                            if(reservation.getStatus().equals("O"))
+                                holder.hotelImageView.setImageResource(R.drawable.o);
+                        }
                     })
                     .addOnFailureListener(e -> {
                         Log.e(Constants.appLog, e.getMessage());
@@ -86,6 +90,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             hotelImageView = view.findViewById(R.id.hotelImage);
             nameView = view.findViewById(R.id.title);
             addressView = view.findViewById(R.id.address);
+            //statusView = view.findViewById(R.id.status);
         }
 
         @Override

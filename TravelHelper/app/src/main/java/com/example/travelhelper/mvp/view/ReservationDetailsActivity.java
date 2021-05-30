@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.travelhelper.App;
 import com.example.travelhelper.databinding.ActivityReservationDetailsBinding;
@@ -31,6 +32,22 @@ public class ReservationDetailsActivity extends AppCompatActivity implements Res
         Bundle bundle = getIntent().getExtras();
         String reservationId = (String) bundle.get("Id");
         String roomId = (String) bundle.get("RoomId");
+        String status = (String) bundle.get("Status");
+
+        if(status.equals("O")){
+            binding.status.setText("Бронь не подтверждена");
+            binding.comment.setVisibility(View.INVISIBLE);
+        }
+        else if(status.equals("A")){
+            binding.status.setText("Бронь подтверждена");
+            binding.comment.setVisibility(View.VISIBLE);
+            binding.deleteBtn.setVisibility(View.INVISIBLE);
+        }
+        else{
+            binding.status.setText("Бронь отклонена");
+            binding.comment.setVisibility(View.VISIBLE);
+            binding.deleteBtn.setVisibility(View.INVISIBLE);
+        }
 
         presenter = new ReservationDetailsPresenter(this);
         presenter.onScreenLoaded(roomId);
