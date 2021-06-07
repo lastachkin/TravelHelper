@@ -11,6 +11,7 @@ import com.example.travelhelper.utils.Extensions;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Base64;
 
 import java.util.UUID;
 
@@ -33,7 +34,7 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
                              binding.email.getText().toString(),
                              binding.phone.getText().toString(),
                              binding.login.getText().toString(),
-                             binding.password.getText().toString(),
+                             Base64.encodeToString(Extensions.encodeToAES(binding.password.getText().toString()).getBytes(), Base64.DEFAULT),
                              Constants.userRole)
             );
         });

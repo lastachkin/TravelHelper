@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.travelhelper.databinding.ActivityLoginBinding;
 import com.example.travelhelper.mvp.contract.LoginContract;
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         }
         else{
             Constants.isAdmin = false;
+            Log.i(Constants.appLog, "Encoded" + Extensions.encodeToAES(binding.password.getText().toString()));
             startActivity(new Intent(this, HomeActivity.class));
         }
     }

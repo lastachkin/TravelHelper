@@ -34,8 +34,6 @@ public class ManagerActivity extends AppCompatActivity {
                     selectedFragment = new OpenReservationsFragment();
                 else if (id == R.id.nav_active)
                     selectedFragment = new ActiveReservationsFragment();
-                else if (id == R.id.nav_add)
-                    selectedFragment = new MeFragment();
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                 return true;

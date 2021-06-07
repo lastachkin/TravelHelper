@@ -7,8 +7,4 @@
         android:id="@+id/nav_active"
         android:icon="@drawable/ic_reservation"
         android:title="Подтверждённые" />
-    <item
-        android:id="@+id/nav_add"
-        android:icon="@drawable/ic_add"
-        android:title="Добавить заезд" />
 </menu>
